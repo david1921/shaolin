@@ -1,0 +1,8 @@
+<h1> Edit: <%= @user.display_name %></h1>
+<br>
+<div class="column_left">
+	<%= simple_form_for [:system, @user], :html=>{:id => "edit_user", :class=>'form-horizontal'} do |f| %>
+	  <%= render :partial => 'form', :locals => {:f => f, :text => 'Save user'} %>
+	  <%= link_to 'Cancel', system_users_path, :class => 'btn btn-danger' %>
+	<% end %>
+</div>

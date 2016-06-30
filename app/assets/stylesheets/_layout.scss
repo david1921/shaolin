@@ -1,0 +1,84 @@
+// !GLOBAL LAYOUT STYLZZ ********************************************
+html,body {
+	height:100%;
+}
+
+/* keep this min-width until the responsive design is in place */
+body {
+	min-width:768px;
+}
+
+// !sticky footer ********************************************
+.page_wrap {
+	height:100%;
+	height:auto!important;
+	margin:0 auto -250px; /* - margin is height of the footer*/
+	min-height:100%;
+}
+
+.push {
+	height:250px;
+}
+
+.content {
+	clear:both;
+	margin:0 auto;
+	overflow:hidden;
+	padding:20px;
+	position:relative;
+	width:$width;
+}
+
+.clear {
+	clear:both;
+}
+
+// !grid ********************************************
+
+// Choose a grid width, the number of columns and the margin between columns. The result of the following equation has to be an integer, not a fraction: (width - (columns - 1) * col_margin) / columns = N
+$grid_width: 100%; // total with of page
+
+$columns: 12; // number of columns
+
+$col_margin: 2%; // margin between columns, math magic 
+
+$col_width: ($grid_width - ($col_margin * ($columns - 1))) / $columns; 
+
+$col_total_width: $col_width + $col_margin; 
+
+// create row div
+@mixin row() {
+	clear:both;
+	overflow: visible; // can't do overflow:hidden because of tooltips--have to use clear divs unfortunately
+	width:$grid_width;
+}
+
+//create a column div 
+@mixin col($n: 1) {
+	float:left;
+}
+
+//make an element span n columns 
+@mixin span($n: 1) {
+	width:($n * $col_width) + (($n - 1) * $col_margin);
+	@if $n == $columns { 
+	 margin-right: 0;
+  } @else {
+  	margin-right:$col_margin;
+  }
+}
+
+//the last column in a row needs this 
+@mixin last() {
+	margin-right:0;
+}
+
+//prepend n blank columns 
+@mixin prepend($n: 1) {
+	margin-left:$col_total_width * $n;
+}
+
+//append n blank columns 
+@mixin append($n: 1) {
+	margin-right:$col_total_width * $n + $col_margin;
+}

@@ -1,0 +1,226 @@
+/* IE styles */
+/* import global mixins */
+@import "../mixins";
+
+/* import global variables */
+@import "../variables";
+
+.ie6_alert{
+	background:$bc2;
+	color:#fff;
+	display:block;
+	height:50px;
+	line-height:155%;
+	margin-bottom:20px;
+	padding:10px 0px;
+	text-align:center;
+	width:100%;
+}
+
+//adjustments for all IE, this includes IE9
+.ie{
+
+//page layout stuff
+
+  	/* dashboard */
+  .tabs {
+  	.tab_nav li {
+  		float: left;
+  		padding: 0;
+  		width: 239px;
+  	}
+  	.tab_nav li a,
+  	.tab_nav li.active a {
+      line-height: 45px;
+      padding: 0;
+      width: 100%;
+  	}
+  }//.tabs
+  
+	//header adjustments
+	header{
+		  		
+			input.login_button{
+				@extend .btn1;
+				border-radius:0px;
+				line-height:1.8em;
+  			padding:0.3em 1.3em;
+			}
+	}//header
+  	
+  /* !form stuff */
+  form{
+  	fieldset.inline_checkbox{
+      margin-left: 46%;
+    }
+    
+    input[type="text"], 
+    input[type="password"], 
+    textarea{
+      width: 41%;
+    }
+    
+    
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=number],
+    textarea{
+      font-size: .9em;
+      padding: .4em 1em;
+    }
+  
+  }
+  
+  /*custom select menu*/
+  select{
+      background-image: none;
+      background-color: $bc5;
+      margin-top: -0.2em;
+      padding: .3em 1em .3em .8em;
+  }
+  
+  .home {
+    .video_box{
+      padding-bottom: 1.2em;
+    }
+    
+    .register{
+      line-height: 1.2;
+    }
+    
+  }//home
+  
+  form div.field_with_errors input{
+    outline: 1px solid red;
+  }
+ 
+  //new offer page
+  .test_data_wrapper {
+    padding: 20px 0;
+  }
+
+}//end all ie
+
+
+.ie9{
+  
+   //all buttons in IE9 need svg backgrounds
+   //todo: figure out why this won't work in the variables
+   
+   //the blue button
+  .register_link a,
+  a.register,
+  input[type=submit]{
+    filter: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9ImcxMzQ5NDAyODIwNDMzIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzA2NWM4YyIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWM5Y2U2IiBzdG9wLW9wYWNpdHk9IjEiLz4gIDwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNnMTM0OTQwMjgyMDQzMykiIC8+PC9zdmc+); 
+  }
+  
+  //the gray button
+  a.home_button{
+    filter: none;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9ImcxMzQ4OTM5MjQ2NTgzIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZTllOWU5IiBzdG9wLW9wYWNpdHk9IjEiLz4gIDwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNnMTM0ODkzOTI0NjU4MykiIC8+PC9zdmc+); 
+  }
+
+  
+}
+
+//adjustments for IE7 and IE8 but not IE9
+.ie7,
+.ie8{
+  .register_link a{
+    filter: none!important;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9ImcxMzQ5NDAyODIwNDMzIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzA2NWM4YyIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWM5Y2U2IiBzdG9wLW9wYWNpdHk9IjEiLz4gIDwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNnMTM0OTQwMjgyMDQzMykiIC8+PC9zdmc+);
+  }
+  
+}//end IE7 and IE8
+
+
+//IE7 only
+.ie7{
+	.content{
+		overflow:visible;
+	}
+	header{
+		.branding .header_logo{
+			float:left;
+		}
+		.login_content fieldset{
+			margin-left:-50px;
+		}
+		.login_form input.login_button{
+			border: 0!important;
+		}
+
+		.login_form #alt_session_email{
+			width:85%;
+		}
+	}
+	.ie7-tooltip{
+		background: darken($bc1, 10%);  
+		content: attr(data-tooltip);
+		color: white;  
+		font-size: 1em;
+		padding: 10px;  
+		position: absolute;  
+		right: -2px;
+		text-indent: 0;
+		top: 45px;  
+		width: 170px;
+		z-index: 100999;
+	}
+
+	/* Home */
+
+/*
+	.home a.register {
+		height: 34px;
+	}
+*/
+
+	/* dashboard */
+	.tabs {
+		.tab_nav li {
+			float: left;
+			padding: 0;
+			width: 239px;
+		}
+		.tab_nav li a {
+			padding: 0;
+			width: 100%;
+
+		}
+	}
+
+	/* registration */
+
+	.registrations {
+		input, input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+			padding: 5px;
+		}
+	}
+
+	/* static pages */
+
+/*
+	.home_button {
+		line-height: 46px;
+		padding: 0 1em;
+	}
+*/
+	
+	.btn1, .btn2, .btn3{
+		padding: 0 1em;
+		line-height: 46px;
+  }
+
+}
+
+//IE8 only
+.ie8 {
+	/* home page */
+		
+	#customers, #goals, #track {
+		display: none;
+	}
+}

@@ -1,0 +1,44 @@
+<div class="az_menu_container">
+  <%= render 'sales/shared/search_merchants_form' %>
+  <div class="clear"></div>
+</div>
+
+<div class ="admin_table_container">
+  <div class="merchant_table_container">
+    <section class="merchant_options">
+      <%= link_to "New Merchant", new_sales_merchant_path, class: "create_new_merchant" %>
+      <div class="clear"></div>
+    </section>
+    <p><%= page_entries_info(@merchants, :model => Merchant)  %></p>
+    <div class='data merchants merchants_table'>
+      <ul class="header">
+          <li class="name"><h4>Merchant Name</h4></li>
+          <li class="status"><h4>Status</h4></li>
+          <li class="total_offers"><h4>Total Offers</h4></li>
+          <li class="actions"><h4>Actions</h4></li>
+      </ul>
+      <div class="clear"></div>
+      <div class="merchant_count" data-merchant-count="<%= @merchants.length %>">
+        <% merchant_idx = 0 %>
+        <% @merchants.each_with_index do |merchant, merchant_index| %>
+          <ul id="merchant_row_<%= merchant_idx %>" class="merchant_row">
+            <li class="name column"><%= link_to (merchant.registered_company_name.present? ? merchant.registered_company_name :  merchant.trading_name), sales_merchant_path(merchant) %></li>
+
+            <li class="status column"><%= merchant.status.try(:humanize) %></li>
+            <li class="total_offers column"><%= merchant.offers.try(:length) %></li>
+            <li class="actions column"><%= link_to 'edit', edit_sales_merchant_path(merchant), :class => "edit_btn action_btn" %> | <%= link_to 'offers', sales_merchant_offers_path(merchant), :class => "offers_btn action_btn" %></li>
+            <div class="clear"></div>
+          </ul>
+          <% merchant_idx = merchant_idx + 1 %>
+        <% end %>
+        <div class="clear"></div>
+      </div>
+      <%= will_paginate(@merchants) %>
+      <div class="clear"></div>
+    </div><!--/data merchants-->
+    <section class="merchant_options_bottom">
+      <%= link_to "New Merchant", new_sales_merchant_path, class: "create_new_merchant" %>
+      <div class="clear"></div>
+    </section>
+  </div><!--/merchant_table_container-->
+</div>

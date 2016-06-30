@@ -1,0 +1,2738 @@
+/*
+Template Name: Application
+Template Description: Global application styles. This file imports normalize, mixins, and variables and is compiled into application.css. Any mixins and variables should be defined in their respective partials and can be used here.
+Author: Analog Analytics
+Version: 1.0
+*/
+
+//IMPORT STYLES ******************************************
+
+// import normalize--our css "reset"
+@import "normalize";
+
+// import global mixins
+@import "mixins";
+
+// import global variables 
+@import "variables";
+
+// import fonts
+@import "fonts";
+
+// import layout
+@import "layout";
+
+// THESE STYLE ARE APPLIED TO ALL DEVICES (mobile first)--for device-specific styles for larger screens, see the media stylesheets at the bottom
+
+// this style is for in-page notes (to be removed when the demo is complete)
+.note{
+  background: yellow;
+}
+
+body{
+  background: white;
+}
+
+body h3#no_js_message{
+  color: red;
+  font-size:1.5em;
+  padding: 20px 0px;
+  text-align:center;
+}
+
+
+// !TYPOGRAPHY ****************************************** 
+h1{
+  color: $heading;
+  font-size: 2em;
+  font-weight: 300;
+  .support &{
+    margin-bottom: .5em;
+  }
+}
+
+h2{
+  color: $heading;
+  font-size: 1.6em;
+  letter-spacing: .05em;
+  font-weight: 300;
+  .support &{
+    color: $text1;
+    margin-bottom: .5em;
+  }
+}
+
+h3{
+  color: $heading;
+  font-size: 1.4em;
+  margin: 0 0 1em;
+  font-weight: 400;
+  .support &{
+    font-size: 1.2em;
+    margin-bottom: 0;
+  }
+}
+
+h4{
+  color: $heading2;
+  font-size: 1.3em;
+  line-height: 1.2;
+  margin: 1em 0 .5em;
+  font-weight: 300;
+}
+
+h5{
+  font-size: 1.1em;
+  color: $heading2;
+  margin: 0 0 .5em 0;
+  font-weight: 300;
+}
+
+h6{
+  color: $heading2;
+  font-size: 1em;
+  margin: 1em 0 .5em;
+}
+p, li{
+  color: $text1;
+  line-height: 1.3;
+  .support &{
+    margin-top: 0;
+  }
+}
+
+li{
+  margin-bottom: .5em;
+}
+
+hr {
+  border: none;
+  border-top: solid 1px darken($bc5, 10%);
+  border-bottom: solid 1px #fff;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+abbr[title] {
+  border-bottom: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+
+small{
+  color: $text1;
+}
+a{
+  color: $link;
+}
+
+img{
+  max-width: 100%;
+}
+
+button {
+  position: relative;
+}
+
+section {
+  hr {
+    margin: 1em -1em;
+    padding-right: 2em;
+  }
+}
+
+.help{
+  background: url('/assets/icons/help_sm.png') no-repeat;
+  cursor: help;
+  display:block;
+  height:22px;
+  position: absolute;
+  right:15px;
+  top:15px;
+  text-indent: 0;
+  width:22px;
+}
+
+button .help {
+  right: 5px;
+  top: 5px
+}
+
+.help.pricing a{
+  display: inline-block;
+  float: right;
+  margin-left: .4em;
+  right: 0;
+  top: -24px;
+  position: relative;
+  z-index: 999;
+  }
+
+.help.inline{
+  display: inline-block;
+  margin-left: 1%;
+  right: 0;
+  top: 2px;
+  position: relative;
+}
+
+.help.checkbox {
+  top: 6px;
+  right: 22px;
+}
+
+.help[data-tooltip]:link,
+.help[data-tooltip]:visited {
+  position: relative;
+  text-decoration: none;
+}
+
+.help[data-tooltip]:before {
+  border: solid transparent;
+  border-bottom-color:darken($bc1, 10%);
+  border-width: 8px;
+  content: "";
+  height: 0;
+  right: 2px;
+  pointer-events: none;
+  position: absolute;
+  text-indent: 0;
+  top:14px;
+  width: 0;
+  visibility: hidden;
+}
+
+.help[data-tooltip]:after {
+  @include border-radius(4px);
+  background: darken($bc1, 10%);
+  content: attr(data-tooltip);
+  color: white;
+  font-size: .9em;
+  padding: 8px;  
+  position: absolute;
+  right: -2px;
+  text-indent: 0;
+  top: 30px;  
+  visibility: hidden;
+  width: 150px;
+  z-index: 999;
+}
+
+.help.right[data-tooltip]:before{
+  border: solid transparent;
+  border-right-color: darken($bc1, 10%);
+  border-width: 8px;
+  left: 14px;  
+  top:5px;
+}
+
+.help.right[data-tooltip]:after {
+  left: 30px;
+  top: -15px;
+  width: 150px;
+}
+
+.help.inline.top[data-tooltip]:before {
+  border: solid transparent;
+  border-top-color: darken($bc1, 10%);
+  border-width: 8px;
+}
+
+.help.inline.top[data-tooltip]:after {
+  bottom: 31px;
+  top: auto;
+  right: -10px;
+  width: 200px;
+}
+
+.help.inline-wide {
+  display: inline-block;
+  margin-left: .3em;
+  left: 0;
+  top: 4px;
+  position: relative;
+  z-index: 999;
+}
+
+.help.inline-wide[data-tooltip]:after {
+  width: 250px;
+  font-size: .8em;
+}
+
+
+.help[data-tooltip]:hover:before,
+.help[data-tooltip]:hover:after {
+  visibility: visible;
+}//END TYPOGRAPHY
+
+
+// !Tabs ******************************************
+.tabs{ 
+  position: relative;
+  
+  &.dashboard {
+    border-top: 1px solid $border;
+  }
+
+  ul.user_nav_wrapper {
+    margin: 0 auto;
+    width: 960px;
+  }
+
+  .tab_nav.dashboard {
+    margin: 0 auto;
+    width: 960px;
+  }
+
+  .tab_nav {
+    margin-top:-46px;
+    margin-bottom: 1.5em;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    min-width: 930px;
+
+    li{
+      margin: 0;
+      a {
+        @include box-sizing;
+        @extend .barclay_reg;
+        background: $bc5;
+        border: none;
+        border-left:1px solid $border;
+        border-right:1px solid $border;
+        color: $text1;
+        display: block;
+        float: left;
+        font-size: .9em;
+        height: 45px;
+        line-height: 1.1;
+        margin-left: -1px;
+        overflow: hidden;
+        padding: 1.2em 1em 1em;
+        text-align: center;
+        text-decoration: none;
+        width: 25%;
+      }
+      &:first-child a{
+        margin-left: 0;
+      }
+    }//li
+    li.active{
+      a{
+        color: $bc1;
+        color: #fff;
+        @include gradient($bc1, $gd1_alt, $gd1_IE_alt);
+      }
+      a[href='#offers']:after{
+        margin-left:-64px;
+      }
+      a[href='#customers']:after{
+       margin-left:-100px;
+      }
+      a[href='#goals']:after{
+       margin-left:-87px;
+      }
+      a[href='#track']:after{
+        margin-left:-115px;
+      }
+    }//li.active
+  }//.tab_nav
+}//END GLOBAL NAVIGATION ELEMENTS
+
+
+// !FORM STYLEZZZZZZZZZ OMG I LOVE FORMS! ******************************************
+form  {   
+    color: $text1;
+  fieldset {
+    margin: .4em 0 0 0;
+    position: relative;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  textarea,
+  input[type="number"]{
+    @include border-radius;
+    @include transition(box-shadow);
+    border: 1px solid lighten($border, 5%);
+    color: $text1;
+    font-size: .9em;
+    line-height: 1.1;
+    padding: .4em 1em;
+    vertical-align: top;
+    -webkit-appearance: none;
+    
+    &:focus{
+      color: lighten($bc1, 10%);
+      outline: 0;
+      @include box-shadow(0 0 6px transparentize($bc1, .15));
+    }
+  }
+  
+  input[type=checkbox],
+  input[type=radio]{
+    margin-right: .5em;
+    color: $text1;
+  }
+
+  input[type=submit]{
+    @extend .btn3;
+  }
+
+  //custom css-only radio buttons in chrome and safari only--defaults to regular buttons in IE and FF
+  input[type=radio]{
+    -webkit-appearance: none;
+    @include gradient($bc5, $gd2, $gd2_IE);
+    @include box-shadow(1px 1px 2px rgba(0, 0, 0, .3));
+    @include border-radius(9px);
+    border: 1px solid lighten($bc2, 50%);
+    height: 18px;
+    width: 18px;
+    vertical-align: text-bottom;
+
+    &:checked{
+      @include box-shadow((1px 1px 1px rgba(255, 255, 255, .2), 1px 1px 4px rgba(0, 0, 0, .3) inset));
+      background: $bc1;
+    }
+  }
+
+  label{
+    display: block;
+    color: $text1;
+    float: left;
+    font-size: 1em;
+    margin-right: 2%;
+    margin-top: .2em;
+    padding-bottom: 1em;
+    text-align: right;
+    vertical-align: top;
+    width: 44%;
+  }
+
+  ul {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: .5em;
+
+    li{
+      text-indent: -1.4em;
+      padding-left: 1.2em;
+      line-height: 1.4;
+      
+      ul {
+        float: none;
+        select {
+            margin-left: 25px;
+            width: 150px;
+        }
+      }
+    }
+  }
+
+  a{
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  textarea{
+    width: 41%;
+  }
+
+  .radio_inline {
+    padding: 0 0 0 .5em !important;
+    li {
+      display: inline;
+      margin-right: 30px;
+      float: left;
+    }
+  }
+}//END form 
+
+
+// (this is necessary because of some over-nesting which needs to be fixed)
+form fieldset.inline_fields,
+.offer_details_form fieldset.inline_fields{
+  label,
+  input{
+    float: none;
+    text-align: left;
+    width: auto;
+  }
+}
+
+.row {
+  position: relative;
+  clear: both;
+  padding: 0 0 1em 0;
+}
+
+.save_progress{
+  @extend .btn1;
+  display: inline-block;
+}
+
+.view_month{
+  @extend .btn1;
+  display: inline-block;
+}
+
+.next{
+  @extend .btn3;
+  float:right;
+}
+
+.back{
+  @extend .btn1;
+  margin-bottom: 1em;
+}
+
+fieldset.inline_checkbox{
+  margin-left: 42%;
+
+  label,
+  input{
+    display: inline;
+    float: none;
+    width: auto;
+  }
+}
+
+fieldset.submit{
+  text-align: right;
+}
+
+form.new_info_request input[type=submit]{
+  margin-left: 46%;
+}
+
+.additional_options{
+  @include box-shadow(0 0 15px rgba(0, 0, 0, .06) inset);
+  @include border-radius(5px);
+  background: darken($bc5, 4%);
+  border: 1px solid darken($bc5, 10%);
+  padding: 1em 1em 0 1em;
+  margin: 0 0 1em 0;
+
+  .row {
+    overflow: visible;
+
+    input,
+    label{
+      display: inline-block;
+      float: none;
+      vertical-align: top;
+    }
+
+    input[type=text]{
+      width: 38%;
+    }
+  }
+}//END .additional_options
+
+
+.special_info,
+.form_field_info{
+  color: $text1;
+  display: block;
+  font-size: .7em;
+  font-style: normal;
+  margin-top:.3em;
+}
+
+.date_input {
+  background: white url('/assets/icons/calendar.png') right center no-repeat;
+}
+
+
+// !DATAPICKER STYLES ******************************************
+.datepicker{
+  @include border-radius;
+  background:darken($bc1, 10%);
+  color: white;
+  display:block;
+  margin-left:20px;
+  margin-top:-30px;
+  padding:10px;
+  position: relative;
+  z-index:100;
+
+  select{
+    font-size: .9em;
+    padding: .2em 2.4em .2em 1em;
+  }
+
+  .controls{
+    padding-bottom:10px;
+  }
+  
+  .days th{
+    color:#ffffff;
+    font-weight: 300;
+    font-size: .8em;
+    padding: .2em 0;
+  }
+  
+  tfoot td{
+    font-size: .9em;
+    padding: .2em 0;
+    
+    &:last-child{
+      text-align:right;
+    }
+  }
+
+  .controls th{
+    font-weight: 300;
+    font-size: .9em;
+    padding: .3em;
+  }
+
+  .date{
+    background:$bc5;
+    border:1px solid $border;
+    color: $text1;
+    font-size: .8em;
+    padding: .3em;
+    
+    &:hover{
+      background: darken($bc5, 15%);
+    }
+  }
+  
+  .date.chosen{
+    background: darken($bc5, 25%);
+    color: black;
+  }
+
+  &:before,
+  &:after{
+    bottom: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &:before{
+    border-bottom-color: darken($bc1, 10%);
+    border-width: 10px;
+    left: 50%;
+    margin-left: -10px;
+  }
+
+  &:after{
+    border-bottom-color: darken($bc1, 10%);
+    border-width: 8px;
+    left: 50%;
+    margin-left: -8px;
+  }
+}//END .date_picker
+
+@-moz-document url-prefix() {
+  .datepicker select {
+     padding: .2em 1em;
+  }
+}
+
+
+
+// custom select menu yay
+select{
+  @include border-radius;
+  @include box-sizing;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  box-shadow: 0 0 7px darken($bc2, 5%);
+  appearance: button;
+  border: 1px solid lighten($border, 10%);
+  background: url(/assets/custom_select.png) center right no-repeat;
+  color: $text1;
+  font-size: .9em;
+  margin-top: -0.2em;
+  padding: .3em 2.4em .3em 1em;
+  position: relative;
+}
+@-moz-document url-prefix() {
+  select {
+    background: url(/assets/custom_select_ff.png) center right no-repeat;
+    padding: .3em 1em .3em .8em;
+  }
+}//END select menu
+
+
+// !GLOBAL ERROR MESSAGES
+ul.errors{
+  float: none;
+  color: red;
+  padding: 0;
+  
+  li{
+    color: red;
+    text-indent: 0;
+    padding: 0;
+    line-height: 1;
+  }
+}
+
+form div.field_with_errors input,
+form div.field_with_errors select,
+form div.field_with_errors textarea{
+  @include box-shadow((0 1px 3px rgba(0, 0, 0, .5) inset, 0px 0px 4px red));
+}
+
+.inline_checkbox .field_with_errors{
+  display: inline;
+}
+
+span.error_message {
+  color: red;
+  display: block;
+  font-size: .7em;
+  margin: .5em 0 1em 0;
+}
+
+.error_message_large {
+  color: red;
+  display: block;
+  font-size: 1em;
+  margin: 1em 0;
+}
+
+// Hide arrows on input[type="number"]. Not supported enough by browsers to use.
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+// !HEADER ******************************************
+header{
+  @include box-shadow(0 2px 10px rgba(0, 0, 0, .15));
+  border-bottom: 1px solid $border;
+  margin-bottom: 1em;
+  width: 100%;
+  
+  .home &{
+    @include box-shadow(none);
+    margin-bottom: 0;
+  }
+
+  .home_button{
+    @extend .btn1;
+    position:absolute;
+    right:20px;
+    top:50px;
+  }
+
+  .account_nav_wrapper{
+    @include box-shadow(1px 0px 3px rgba(0, 0, 0, .4));
+    background: $bc5;
+    border-bottom: 1px solid white;
+    clear: both;
+    width: 100%;
+  }
+  
+  .account_nav_content{
+    @extend .barclay_lt;
+    border-left: 1px solid $border;
+    border-right: 1px solid $border;
+    font-size: .9em;
+    max-width: $width;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: right;
+  }
+  
+  .branding{
+    height: 120px;
+    margin: 0 auto;
+    max-width: $width;
+    padding: $padding;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    position:relative;
+    
+    img{
+      margin-top: 20px;
+    }
+      
+    .header_logo{
+      background: url('/assets/bespoke_logo.png');
+      float: left;
+      height:89px;
+      margin-top:20px;
+      width:285px;
+    }
+
+  }//branding
+    
+  .branding form{
+    float: right;
+    
+    fieldset.register_link{
+      float: right;
+      margin: 1.8em 0 1em;
+      clear: both;
+      a{
+        @extend .btn3;
+        @include box-sizing;
+        display: inline;
+        line-height:1.1;
+        padding: .4em .8em;
+      }
+    }//register_link
+
+    form{
+      float: right;
+      
+      fieldset.register_link{
+        float: right;
+        font-size: .8em;
+        margin: 1.8em 0 .4em;
+        clear: both;
+        a{
+          @extend .btn3;
+          @include box-sizing;
+          display: inline-block;
+          line-height: 1.4;
+        }
+      }//fieldset.register_link
+    }//form
+        
+    .login_form {
+      float: right;
+      font-size: .8em;
+      margin: 0;
+      width: 630px;
+      clear: both;
+      width: 520px;
+      
+      fieldset {
+        float: left;
+        margin: .2em 0;
+        padding-right: 2%;
+        width: 40%;
+      
+        &:last-child{
+          padding-right: 0;
+          text-align: right;
+          width: 16%;
+        }
+      }//fieldset
+      
+      label, input{
+        display: inline-block;
+        text-align: left;
+        width: auto;
+      }
+      
+      input[type=email],
+      input[type=password]{
+        margin-bottom: .4em;
+        width: 85%;
+      }
+      
+      input.login_button{
+        @extend .btn1;
+        padding: .4em 1em;
+        text-align: center;
+        width: 84px;
+      }
+      
+      label{
+        margin-top: 4px;
+      }   
+    }//login_form
+  }//branding .form
+    
+  .logout{
+    border-right: 1px solid $border;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    background: none;
+    color: $link;
+    padding: .5em 2.2em .3em;
+    text-decoration: none;
+  }
+
+  p{
+    margin: 0;
+    color: $text1;
+    padding: .5em 2.2em .3em;
+  }
+
+  .welcome,
+  .company,
+  .logout{
+    float: left;
+  }
+
+  .company{
+    border-right: 1px solid $border;
+  }
+
+  .welcome{
+    border: none;
+    margin-left: 1em;
+  }
+
+  .user_info{
+    border-left: 1px solid $border;
+    float: right;
+    min-width: 260px;
+  }
+
+  .logout{
+    display: block;
+  }
+
+}//END header
+
+
+// !FOOTER ******************************************
+.signoff{
+  clear: both;
+  height:44px;
+  margin: 0 auto;
+  position: relative;
+  padding: 1em 0;
+  width: 960px;
+  
+  .signoff_logo{
+    background: url('/assets/bespoke_signoff.png') no-repeat;
+    height:44px;
+    position: absolute;
+    width: 422px;
+    right: 0;
+  }
+}
+
+footer{
+  @include gradient($bc1, $gd6, $gd6_IE);
+  border-top: 1px solid $border;
+  clear: both;
+  height: 250px;
+  overflow: hidden;
+  width: auto;
+
+  .footer_wrap{
+    margin: 0 auto;
+    max-width: $width;
+    padding: 2em 0 0;
+    overflow: hidden;
+  }
+
+  .footer_wrap > div{
+    float: left;
+    margin: 20px 4em 2em 0;
+
+    &:nth-child(3){
+      border-left: 1px solid $border;
+      float: right;
+      margin-right: 0;
+      padding-left: 1em;
+    }
+
+    &:nth-child(2) nav a{
+      margin-top: 10px;
+      height: 40px;
+    }
+  }
+
+  nav a{
+    clear: both;
+    color: lighten($bc1, 45%);
+    display: block;
+    font-size: .9em;
+    line-height: 1.5;
+    text-decoration: none;
+
+    img{
+      float: left;
+      margin-right: 3px;
+      margin-top: -10px;
+    }
+  }
+
+  small{
+    clear: both;
+    color: lighten($bc1, 35%);
+    display: block;
+    margin: 1em 0;
+  }
+}//END footer
+
+
+// !PAGE LAYOUTS ******************************************
+fieldset ul li {
+  list-style: none;
+}
+
+.column_left{
+  float: left;
+  margin-right: 2%;
+  width: 65%;
+}
+
+.column_right{
+  float: left;
+  width: 33%;
+}
+
+.single_form_page{
+  width: 76%;
+}
+
+.form_row{
+  @include row;
+  border-bottom: 1px solid $border;
+  padding: 1.2em 0 .6em;
+  &:first-of-type {
+    padding: 0;
+  }
+  &:last-of-type{
+    border-bottom: none;
+  }
+  
+  > p{
+    @include span(10);
+    font-size: .9em;
+  }
+}
+
+// !Registration forms ******************************************
+form#new_merchant,
+.merchants,
+.registrations,
+.step_2,
+.step_3,
+.edit,
+.merchant_owners,
+.stores,
+.update,
+.users,
+.versions {
+  span.error_message {
+    float: right;
+    width: 54%;
+  }
+  
+  .personal_details,
+  .business_contact,
+  .company_information,
+  .address_details,
+  .create_password{
+    @include col;
+    @include span(6);
+  }
+  
+  .business_contact,
+  .address_details{
+    @include last;
+  }
+
+  //so the tooltip doesn't get cut off*/
+  .column_left{
+    overflow: visible;
+  }
+
+  select {
+    width: auto;
+    text-transform: capitalize;
+  }
+
+  .box{
+    @extend .lt_box;
+    margin-bottom: 1em;
+  }
+
+  .column_right {
+    text-align: right;
+    
+    .save_progress{
+      position: relative;
+      right: 0;
+      padding-bottom: 10px;
+    }
+  }
+
+  .signatory_first_name,
+  .signatory_last_name,
+  .registered_company_name {
+    display: inline;
+    font-size: 1em;
+  }
+
+  .submit_details {
+    float: right;
+  }
+
+  .add {
+    @extend .btn1;
+    float: right;
+    margin-bottom: 1em;
+    text-align: right;
+    width: 25%
+  }
+
+  .same_store {
+    @extend .btn1;
+    float: right;
+  }
+
+  .find_address {
+    @extend .btn1;
+    @include box-sizing;
+    float: right;
+    margin: .5em 2.5em;
+    line-height: 1.3;
+  }
+
+  .logo {
+    padding-top: 1em;
+  }
+
+  .opening_hours {
+    border-top: 1px solid $bc5;
+    border-bottom: 1px solid darken($bc5, 10%);
+    padding: 1em 0 0 0;
+
+    label {
+      padding-bottom: 3em;
+    }
+
+    .row {
+      overflow: hidden;
+      padding: 1em .5em 0;
+      position: relative;
+    }
+
+    .even {
+      background: rgba(255, 255, 255, .3);
+    }
+  }
+
+  .daily_hours {
+    float: right;
+    width: 50%;
+    overflow: hidden;
+    .hours {
+      width: 56px;
+    }
+    span {
+      display: inline-block;
+      margin: 0 1em 2em 0;
+      text-align: right;
+      width: 9%;
+    }
+  }
+
+  .store_information {
+    border-bottom: 1px solid darken($bc5, 10%);
+    overflow: hidden;
+    padding-bottom: 1em;
+  }
+
+  .facilities {
+    border-top: 1px solid $bc5;
+    padding-top: 1em;
+  }
+
+  .signatory_first_name,
+  .signatory_last_name {
+    display: inline;
+    font-size: 1em;
+  }
+
+  .subcategories {
+    select{
+      margin-left: 20px;
+      margin-top: 7px;
+      min-width: 200px;
+    }
+  }
+}//END FORM PAGE LAYOUTS
+
+
+// !HOME PAGE ******************************************
+.home{
+  .column_left{
+    margin-right: 4%;
+    width: 48%;
+  }
+  .column_right{
+    width: 48%;
+    text-align: left;
+  }
+
+  section{
+    margin-bottom: 1.6em;
+    &:last-child{
+      margin-bottom: 0;
+    } 
+  }
+
+  // Fixes tab divs loading before javascript can apply hide divs
+  #customers, #goals, #track {
+    display: none;
+  }
+
+  .video_box{
+    background: url(/assets/curled-shadow.png) bottom center no-repeat;
+    background-size: contain;
+    margin-bottom: .2em;
+    padding-bottom: 1.2em;
+    padding-top: 1.5em;
+    text-align: center;
+    img{
+      width: 100%;
+      vertical-align: bottom;
+    }   
+  }
+
+  #offers .video_box{
+    padding-top: .5em;
+  }
+
+  #customers,
+  #goals,
+  #track{
+    padding-top: 1em;
+  }
+
+  .left_box{
+    width:420px;
+    float:left;
+    display:inline-block;
+    margin-bottom:55px;
+  }
+
+  .right_box{
+    float:right;
+    width:420px;
+    display:inline-block;
+  }
+
+  h1{
+    color: $bc1;
+    @extend .barclay_reg;
+    margin-bottom: .4em;
+    font-size: 2em;
+  }
+
+  h2{
+    color: $bc1;
+    @extend .barclay_lt;
+    font-size: 1em;
+    margin-bottom:0;
+  }
+
+  h3{
+    @extend .barclay_lt;
+    color: $bc1;
+    margin-bottom: .2em;
+    font-size: 1em;
+  }
+
+  #offers h2{
+    color: $bc2;
+    @extend .barclay_lt;
+    font-size: 1.5em;
+    margin-bottom:1em;
+  }
+
+  p, li{
+    @extend .barclay_lt;
+    margin-top: 0;
+    font-size: .9em;
+  }
+
+  #offers p,
+  #offers li{
+    font-size: 1em;
+  }
+
+  #offers h3 a{
+    text-decoration: none;
+  }
+
+  ul{
+    margin: 0;
+    padding-left: .8em;
+  }
+
+  li{
+    margin: 0;
+    padding-left: 0;
+    margin-left: .2em;
+  }
+
+  #offers p:last-child{
+    margin-bottom: .4em;
+  }
+
+  .nav_full_width {
+    border-bottom: 1px solid $border;
+    height:45px;
+    width:100%;
+  }
+
+  .register{
+    @extend .btn3;
+    font-size: 1em;
+    line-height: 1.2;
+    margin-bottom: 1em;
+  }
+
+  .content {
+    padding: 0;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .content_wrap {
+    @include box-sizing;
+    margin: 0 auto;
+    padding: 0;
+    width: 960px;
+  }
+   
+  .right_arrow{
+    position: absolute;
+    right: -35px;
+    top: 55%;
+  }
+}//END .home
+
+
+// !NEW OFFER ******************************************
+.new_offer_progress_bar {
+  margin-left: 60px;
+  padding: 1em 0;   
+}
+
+.offers.edit,
+.offers.new, 
+.offers.create,
+.update {
+  section  {
+    @extend .lt_box;
+    margin-bottom:20px;
+    overflow:hidden;
+    position: relative;
+    
+    h4,
+    .section_title {
+      float:left;
+      font-size:26px;
+      font-weight:500;
+      margin-right:20px;
+      margin-top:0px;
+      width: 30%;
+    }
+
+    h4.tooltip{
+      margin-right: 0;
+      width: 28%;
+    }
+
+    p{
+      margin-top:0;
+    }
+
+    label{
+      width:46.7%;
+    }
+
+    fieldset{
+      margin-bottom:0;
+    }
+
+    #options_info{
+      display: block;
+      clear: both;
+      text-align: right;
+    }
+
+    #offer_duration {
+      width: 52%;
+    }
+
+    #date_error {
+      display: inline-block;
+      float: right;
+      width: 51.2%;
+    }
+
+    .objective_buttons{
+      overflow: hidden;
+      position:relative;
+      float:right;
+      width:65%;
+      
+      button{
+        @include gradient($bc2, $gd2, $gd2);
+        border:1px solid lighten($border,10%);
+        color: $bc1;
+        font-size: 1em;
+        height:70px;
+        margin:0 15px 15px 0;
+        width: 45%;
+      
+        &:hover{
+          @include gradient($bc1, $gd1_alt, $gd1_IE_alt);
+          color: white;
+        }
+      }
+
+      button.selected{
+        @include gradient($bc1, $gd1_alt, $gd1_IE_alt);
+        border:none;
+        color: white;
+        font-size: 1em;
+        height:70px;
+        margin:0 15px 15px 0;
+        width: 45%;
+      }
+    }
+
+    .next {
+      float: right;
+    }
+  }
+
+  .free_or_pre_paid, 
+  .objective {
+    fieldset{
+      float:left;
+      font-size:13px;
+      margin-right:5px;
+      margin-top:0px;
+      width:20%;
+      
+      p{
+        padding-left:25px;
+      }
+      
+      input{
+        float:left;
+      }
+
+      label{
+        @include box-sizing;
+        float:none;
+        padding-left:25px;
+        padding-top:2px;
+        margin-bottom:10px;
+        text-align:left;
+        width:99%;
+        clear:none;
+      }
+
+      .error_message {
+        clear: both;
+        float: left;
+        font-size: .9em;
+        margin-left: 300px;
+      }
+    }
+  }
+
+  .offer_mechanic {
+    .error_message {
+      float: right;
+      width: 58%;
+    }
+  }
+
+  .edit_offer,
+  .new_offer {
+    .section_title {
+      float: left;
+      padding: 0px 0px 0px 0px;
+      text-align: left;
+      width: 30%;
+    }
+
+    fieldset {
+      width: 100%;
+    }
+
+    .radio {
+      float: left;
+      width: 20%;
+    }
+
+    .submit_offer {
+      @extend_btn1;
+      float: right;
+    }
+
+    input[type="checkbox"]{
+      margin-top: 0.4em;
+    }
+
+    input[type="radio"] {
+      margin-top: 0.2em;
+    }
+  }
+
+  #stores_selector_container {
+    .store_select {
+      clear: right;
+      float: right;
+      margin-bottom: 10px;
+      width: 50%;
+    }
+  }
+
+  .fieldset_container {
+    float: left;
+    width: 60%;
+    label {
+      width: 40%;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 52%;
+    }
+
+    textarea {
+      height: 120px;
+      margin-bottom: 10px;
+    }
+  }
+
+  section.category,
+  section.category_two{
+    fieldset{
+    float: left;
+    margin:0;
+    position: relative;
+    width: 30%;
+      
+      label{
+        float:none;
+        font-weight:bold;
+        margin-left:10px;
+        margin-top:10px;
+        text-align:left;
+        width:100%;
+      }
+    }
+
+    .btn1{
+      bottom:10px;
+      position:absolute;
+      right:10px;
+
+      span{
+        color:$bc1;
+        display: inline-block;
+        font-size:18px;
+      }
+    }
+
+    #select_secondary{
+      @include gradient($bc2, $gd2, $gd2);
+      border:1px solid lighten($border,10%);
+      color:$bc1;
+      float:right;
+      font-size:20px;
+      margin-top:15px;
+      padding:20px 0;
+      width:68%;
+
+      span{
+        display:inline-block;
+        font-size:24px;
+      }
+    }
+
+    .subcategories {
+      select{
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        min-width: 210px;
+      }
+    }
+  }
+
+  .next{
+    @extend .btn3;
+    float:right;
+  }
+
+  .save_progress{
+    position:absolute;
+    right:130px;
+  }
+
+  .category_two_wrapper{
+    padding-left: 32%;
+    position:relative;
+    .close{
+      @include border-radius(20px);
+      @include text-shadow(1px 2px 0px #FFFFFF);
+      @include gradient($bc1, $gd1, $gd1_IE);
+      color:#ffffff;
+      cursor: pointer;
+      display:block;
+      height: 25px;
+      font-size:20px;
+      margin: 0 auto;
+      padding-top:5px;
+      position: absolute;
+      right:-12px;
+      text-align:center;
+      top:-12px;
+      width: 30px;
+      z-index:10;
+    }
+  }
+
+  .target_audience {
+    .checkbox {
+      float: left;
+    }
+
+    .check_boxes {
+      float: left;
+    }
+
+    .collection_check_boxes {
+      float: left;
+    }
+
+    .checkbox {
+      clear: right;
+      float: right;
+      width: 58%;
+    
+      label.collection_check_boxes {
+        text-align: left;
+        width: 70%;
+      }
+    }
+
+    fieldset {
+      margin-top: 20px;
+    }
+  }
+
+  p.error_notification {
+    color: red;
+  }
+
+  .offer_commission span{
+    display: block;
+    margin-top: 10px;
+  }
+
+  fieldset label{
+    width: 55.5%;
+  }
+
+  .own_image_contact{
+    background: lighten($bc2,50%);
+    padding: 10px 20px;
+    width: 79%;
+    margin-left: 53px;
+  }
+
+  .redeem_how{
+    .online_address,
+    .phone{
+      padding:0px;
+      margin:0px;
+      max-width:100%;
+      width:100%;
+      
+      label{
+        margin:0px;
+        padding:0px;
+        text-align:left;
+        width:100%!important;
+      }
+
+      input{
+        width:100%!important;
+      }        
+    }
+  }
+}//END .offers.edit, .offers.new, .offers.create, .update
+
+@-moz-document url-prefix() {
+  .offers.edit,
+  .offers.new, 
+  .offers.create,
+  .update {
+    .edit_offer,
+    .new_offer {
+      input[type="checkbox"]{
+        margin-top: 0.3em;
+      }
+    }
+  }  
+}
+
+.new_offer_head_wrap{
+  padding-top:5px;
+  position:relative;
+  margin-bottom:30px;
+
+  h1{
+    margin-top:10px;
+    width: 60%;
+  }
+
+  p{
+    bottom:-35px;
+    position:absolute;
+    right:0;
+  }
+
+  .percent_15,
+  .percent_40,
+  .percent_60,
+  .percent_85{
+    background: url('/assets/new_offer_15_percent.png') no-repeat;
+    bottom:10px;
+    display:block;
+    height:46px;
+    position:absolute;
+    right:0;
+    width:46px;
+    text-indent:-9999em;
+  }
+
+  .percent_40{
+    background: url('/assets/new_offer_40_percent.png') no-repeat;
+  }
+
+  .percent_60{
+    background: url('/assets/new_offer_60_percent.png') no-repeat;
+  }
+
+  .percent_85{
+    background: url('/assets/new_offer_85_percent.png') no-repeat;
+  }
+
+  .save_progress{
+    bottom:14px;
+    position:absolute;
+    right:55px;
+  }
+}
+
+.new_offer_progress_bar{
+  .progress_section{
+    display:inline-block;
+    text-align:center;
+    width:18%;
+
+    .progress_label{
+      color:$bc2;
+      display:block;
+      font-size:16px;
+      margin-bottom:10px;
+    }
+
+    .progress_circle {
+      @include border-radius(22px);
+      @include text-shadow(1px 2px 0px #FFFFFF);
+      @include gradient($bc5, $gd2, $gd2_IE);
+      border:1px solid lighten($border, 10%);
+      color:$btn_lt;
+      display:block;
+      height: 36px;
+      font-size:24px;
+      margin: 0 auto;
+      padding-top:8px;
+      text-align:center;
+      width: 44px;
+    }
+  }
+
+  .active{
+    .progress_label{
+      color:$bc1;
+    }
+
+    .progress_circle {
+      border:none;
+      @include border-radius(22px);
+      color:$btn_dk;
+      @include gradient($bc1, $gd1, $gd1_IE);
+      height: 36px;
+      font-size:24px;
+      margin: 0 auto;
+      padding-top:8px;
+      text-align:center;
+      text-shadow:1px 2px 0px $bc1;
+      width: 44px;
+    }
+  }
+
+  .progress_line{
+    display:block;
+    border-top: 1px solid $border;
+    height:20px;
+    width:75%;
+    margin-bottom:25px;
+    margin-left:80px;
+    margin-top:-22px;
+  }
+}//END .new_offer_progress_bar
+
+.quantity_cap p{
+  clear: both;
+}
+
+
+// new_offer_details ******************************************
+.offers.edit,
+.offers.update {
+  color: $text1;
+
+  .column_left{
+    overflow: visible;
+  }
+
+  section.offer_details_form section {
+    @extend .lt_box;
+    margin-bottom:20px;
+    position: relative;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .offer_title fieldset fieldset, .additional_information fieldset fieldset{
+    margin-left: 36%;
+
+    label, input{
+      display: inline;
+      float: none;
+      text-align: left;
+      width: auto;
+    }
+  }
+
+  .image_ui_btn {
+    @include gradient($bc2, $gd2, $gd2);
+    color: $bc1;
+    display:block;
+    padding: 12px 0px;
+    margin: 20px 0 15px 260px;
+    text-align:center;
+    width: 305px;
+    border:1px solid #ccc;
+  }
+
+  fieldset.radio_buttons.optional {
+    span.radio {
+      label {
+        float: left;
+        text-align: left;
+        width: 60%;
+      }
+
+      input {
+        float: left;
+      }
+    }
+  }
+
+  .service_phone_redeem ul{
+    max-width: 47%;
+  }
+
+  .offer_details_form {
+    h4{
+      float:left;
+      font-size:26px;
+      font-weight:500;
+      margin-right:20px;
+      margin-top:0px;
+      width:95%;
+    }
+    
+    p{
+      margin-top:0;
+    }
+
+    .offer_title button{
+      @extend .btn1;
+    }
+
+    label{
+      width:41%;
+    }
+   
+    input[type=text],
+    select,
+    textarea{
+      width: 45%;
+      display: inline-block;
+    }
+
+    textarea{
+      height: 6em;
+      max-width: 47%;
+      width: 47%;
+    }
+
+    .keywords {
+      textarea{
+        height: 6em;
+      }
+    }
+
+    #offer_description {
+      height: 12em;
+    }
+
+    .characters {
+      color: #aaa;
+      float: right;
+      font-size: 11px;
+      margin-top: -37px;
+      margin-right: 45px;
+    }
+
+    .resize_box {
+      float:right;
+      font-size: 11px;
+      font-style: italic;
+      margin-right: 30px;
+      margin-top: -10px;
+    }
+
+    .spell_check {
+      float: left;
+      font-size: 13px;
+      margin: -10px 0 10px 45px;
+    }
+
+    .bullet_list{
+      position:relative;
+      
+      .list_box{
+        background: none repeat scroll 0 0 #FFFFFF;
+        float: right;
+        margin-top: 5px;
+        position: relative;
+        right: 24px;
+        width: 51%;
+        
+        .bullet_list_item{
+          border-bottom:1px dashed darken($bc5, 15%);
+          cursor:pointer;
+          padding:10px 5px;
+        
+           .close{
+              float:right;
+          }
+        }
+      }
+    }
+  }
+  .restrictions {
+    h5 {
+      margin: 0 0 1em 0;
+    }
+
+    fieldset {
+      margin: 15px 0 0 0;
+    }
+
+    fieldset ul {
+      padding: 0 0 0 0;
+      width: 100%;
+    }
+
+    ul li {
+      text-indent: 0;
+      padding: 0 0 0 0;
+    }
+
+    label {
+      display: inline;
+      float: left;
+      padding: 0 0 .5em 0;
+      text-align: right;
+      width: 40%;
+    }
+
+    .bullet_list {
+      label {
+        display: inline-block;
+        float: left;
+        text-align: right;
+        width: 41%;
+      }
+    }
+  }
+}//END .new_offer_details
+
+
+// !LOGIN ****************************************** 
+.sessions.new .single_form_page{
+  input[type=submit]{
+    margin: .5em 0;
+  }
+
+  div.single_form_page > a,
+  input[type=submit],
+  h2{
+    margin-left: 47%;
+  } 
+}//END LOGIN
+
+
+// !REQUEST INFO ******************************************
+.request_info{
+    form{
+        @extend .lt_box;
+        width: 80%;
+    }
+}//END REQUEST INFO
+
+
+// !HELP & SUPPORT ******************************************
+.support {
+ .home_button{
+    @extend .btn1;
+  }
+
+  .answers {
+    @extend .lt_box;
+    margin: 15px 0;
+    padding: 20px;
+    padding-top: 5px;
+  }
+
+  #user_question {
+    @extend .lt_box;
+    margin-top: 20px;
+    padding-bottom: 1.9em;
+  }
+
+  .question_category fieldset {
+    float: left;
+    margin: 0em;
+    h4 {
+       margin-top: 0em;
+    }
+  }
+
+  fieldset.ask_a_question {
+    width: 48%;
+  }
+
+  fieldset.select_category {
+    width: 26%;
+    select {
+      width: 100%;
+    }
+  }
+
+  #ask_a_question {
+    width: 85%;
+  }
+
+  #find_answers {
+    margin: 31px 0 0 47px;
+  }
+
+  .contact_by_email,
+  .contact_by_phone{
+    @include box-sizing;
+    @extend .lt_box;
+    padding-top: 0;
+  }
+
+  .contact_by_email{
+   .message{
+      margin: 1em auto 0;
+      text-align: right;
+    }
+
+    textarea{
+      height: 6em;
+      margin-top: 10px;
+      padding-top: 10px;
+      width: 80%;
+    }
+
+    .buttons{
+      text-align: right;
+    }
+
+    p{
+      text-align: right;
+    }
+  }
+
+  .privacy_policy_tick {
+    float: right;
+    a {
+      font-size: inherit;
+    }
+    label {
+      float: right;
+      margin-right: 0;
+      width: auto;
+    }
+  }
+
+  .buttons {
+    clear: both;
+  }
+
+  .notes {
+    clear: both;
+    float: right;
+    font-size: .7em;
+  }
+
+  p.question {
+    color: $bc1;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}// !HELP & SUPPORT
+
+// !ADMIN ******************************************
+.az_menu_container {
+  @extend .lt_box;
+  margin-top: 20px;
+
+  h2 {
+    color: $bc2;
+    font-size: 1.3em;
+  }
+
+  input[type="submit"] {
+    @extend .btn3;
+    padding: 0.3em 1em;
+  }
+
+  .user_search {
+    float: left;
+    width: 75%;
+  }
+
+  .new_user_btn {
+    @extend .btn3;
+    float: right;
+  }
+}
+
+.az_merchant_menu {
+  list-style: none;
+  padding: 0px;
+ 
+  li {
+    display: inline;
+    margin-right: 3px;
+
+    a {
+    text-decoration: none;
+    margin-right: 3px;
+    }
+
+    &:last {
+      margin-right: 0px;
+      a {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+
+#merchant-search {
+  margin-bottom: 10px;
+  label {
+    float: left;
+    width: auto;
+  }
+  input {
+    &[type="text"] {
+      float: left;
+      margin-right: 2%;
+      width: 23%;
+    }
+
+    &[type="submit"] {
+      @extend .btn3;
+      padding: 0.3em 1em;
+    }
+  }
+}
+
+.admin_table_container {
+  @extend .lt_box;
+  margin-top: 25px;
+}
+
+.merchant_options {
+  margin-bottom: 20px;
+  
+  .create_owner {
+    @extend .btn3;
+    float: left;
+    margin-top: 5px;
+  }
+}
+
+.merchant_options_bottom {
+  margin-top: 20px;
+}
+
+.merchants_table,
+.merchant_owners_table,
+.stores_table,
+.offers_table {
+  width: 100%;
+  
+  ul {
+    padding: 0px;
+    list-style: none;
+    width: 100%;
+
+    &.header {
+      li {
+        border: 0px;
+      }
+    }
+   
+    li {
+      border-right: darken($bc5, 10%) 1px solid;
+      display: inline;
+      float: left;
+      margin: 0px;
+      padding: 1%;
+      text-indent: 0em;
+      word-wrap: break-word;
+      
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .merchant_count {
+    width: 100%;
+  }
+
+  .merchant_row:nth-child(odd),
+  .user_row:nth-child(even),
+  .owner_row:nth-child(even),
+  .store_address:nth-child(odd) {
+    background-color: $btn_dk;
+  }
+
+  .header h4 {
+    font-size: 1.1em;
+  }
+
+  .name {
+    width: 30%;
+  }
+
+  .total_offers {
+    width: 10%;
+  }
+
+  .status {
+    width: 10%
+  }
+
+  .actions {
+    border-right: 0px;
+    width: 41.6%;
+  }
+  
+  // start user search table column widths
+  .id {
+    width: 4%;
+  }
+
+  .username {
+    width: 12%;
+  }
+
+  .first_name,
+  .last_name,
+  .merchant {
+    width: 9%;
+  }
+
+  .system,
+  .admin {
+    width: 7%;
+  }
+
+  .sales,
+  .active {
+    width: 6%;
+  }
+
+  .user_actions {
+    border-right: 0px;
+    width: 10%;
+  }
+   
+  // Merchant owners columns
+  .title {
+    width: 7%;
+  }
+
+  .owners_first_name,
+  .owners_last_name {
+    width:15%;
+  }
+
+  .postal_code {
+    width:15%;
+  }
+
+  .address {
+    border-right: 0px;
+    width:20%;
+  }
+
+  .owners_actions {
+    border-left: darken($bc5, 10%) 1px solid;
+    border-right: 0px;
+    width:15%;
+  }
+
+  .store_address {
+    border: 0px;
+    width: 98%;
+  }
+
+  // Merchant offers columns
+  .offers_actions {
+    border: 0px;
+    width: 20%;
+  }
+
+  .offers_created_at {
+    width: 18%;
+  }
+
+  .offers_created_by {
+    width: 25%;
+  }
+
+  .offers_id {
+    width: 6%;
+  }
+
+  .offers_status {
+    width: 20%;
+  }
+
+  .merchant_row,
+  .user_row {
+    margin: 0px;
+    width: 100%;
+    li {
+        padding: 1% 1%;
+    }
+    li.status {
+        border-right: darken($bc5, 10%) 1px solid;
+    }
+    .actions {
+        text-align: right;
+    }
+  }
+
+  .edit_btn,
+  .offers_btn,
+  .stores_btn {
+    @extend .btn3;
+  }
+
+  .delete_btn,
+  .versions_btn {
+    @extend .btn1;
+  }
+
+  .user_row {
+    .delete_btn {
+      float: left;
+      margin-top: 10px;
+    }
+
+    .edit_btn {
+      float: left;
+    }
+  }
+
+  .action_btn {
+    font-size: 0.9em;
+    padding: 0.2em 0.6em;
+    
+    &:hover {
+    box-shadow: 0 0 5px rgba(13, 149, 227, 0.8);
+    }
+  }
+
+  .pagination {
+    padding: 1% 0;
+    width: 100%;
+    
+    .previous_page,
+    .next_page,
+    a {
+      @extend .btn1;
+      font-size: 0.9em;
+      padding: 0.2em 0.6em;
+    }
+
+    .current {
+      @extend .btn3;
+      color: $btn_dk;
+      font-size: 0.9em;
+      font-style: normal;
+      padding: 0.2em 0.6em;
+    }
+
+    .disabled {
+      background: transparent;
+      border: 1px solid #CBCBCB;
+      box-shadow: 0px 0px 0px;
+      color: #656565;
+      cursor: default;
+    }
+
+    .disabled:hover {
+      box-shadow: 0px 0px 0px;
+    }
+  }
+}
+
+.merchant_validations{ 
+  .merchants_table {
+    .gpa {
+      width: 4.5%;
+    }
+    .size {
+      width: 4.5%;
+    }
+
+    .actions {
+      width: 13.1%;
+    }
+
+    .date_updated {
+      width: 20%;
+    }
+  }
+}
+
+.stores_table {
+  .name {
+    width: 20%;
+  }
+
+  .phone_number {
+    width: 20%;
+  }
+
+  .email_address {
+    width: 20%;
+  }
+
+  .actions {
+    width: 20%;
+  } 
+}
+
+// new merchant registration form styles
+.test_data_wrapper {
+  padding: 25px 0;
+  
+  .load_data,
+  .clear_data {
+    @extend .btn1;
+    margin-right: 5px;
+  }
+}
+
+.merchants,
+.merchant_owners,
+.stores,
+.users {
+  .edit_merchant,
+  .edit_store,
+  #edit_user,
+  #new_merchant,
+  #new_merchant_owner,
+  .new_store,
+  #new_user {
+    input[type="submit"]{
+      float: right;
+    }
+  }
+
+  .updates {
+    width: 100%;
+  }
+
+  .updated_at,
+  .created_at {
+    float: left;
+    margin-right: 5%;
+    width: 40%;
+  }
+}
+
+.btn-danger {
+  @extend .btn1;
+  float: left;
+}
+
+.edit_merchant,
+.new_merchant {
+  .save {
+    margin-right: 10px;
+  }
+}
+
+.merchant_owners_table {
+  .edit_btn {
+    float: left;
+    margin-bottom: 6px;
+  }
+}
+
+.create_new_merchant,
+.create_new_store {
+  @extend .btn3;
+  float: left;
+}
+
+.create_new_store {
+  float: left;
+  margin-top: 10px;
+}
+
+.merchant_information {
+  list-style: none;
+  margin: 0px;
+  padding: 1%;
+  width: 98%;
+  
+  li {
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    text-indent: 0px;
+    width: 48%;
+  }
+
+  .label {
+    padding-right: 2%;
+  }
+
+  .value {
+    padding-left: 2%;
+  }
+
+  p {
+    margin: .5em 0em;
+  }
+
+  label {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.merchant_information:nth-child(even) {
+  background-color: $btn_dk;
+}
+
+.dashboard{
+  .box{
+    background: $bc5;
+    margin: 0 auto 100px;
+    text-align:center;
+    width:700px;
+    padding:20px 0px 30px;
+    
+    #system_user_links,
+    #admin_user_links,
+    #sales_user_links{
+      display:block;
+      overflow:hidden;
+      
+      ul{
+        list-style:none;
+        
+        li{
+          background:#fff;
+          border:1px solid darken($bc5,10%);
+          float:left;
+          display: inline-block;
+          padding: 15px 25px;
+          margin:0px;
+          border-right:none;
+          
+          &:first-child{
+            background: $bc1;
+            color:#fff;
+            width:60px;
+          }
+          
+          &:last-child{
+            border-right: 1px solid darken($bc5, 10%);
+          }
+        }
+      }
+    }
+
+    #system_user_links{
+      ul li{
+        padding: 15px 42px;
+    
+        &:first-child{
+          padding: 15px 25px;
+        }
+      }
+    }
+  }
+}
+
+#cookiesMessageBanner{
+  background: $bc5;
+  color: $bc2;
+  font-size: .9em;
+  line-height:130%;
+  padding:10px 180px;
+  text-align:center;
+}
+
+.sessions {
+  .box {
+    @extend .lt_box;
+    margin: 60px auto 200px;
+    width: 450px;
+    
+    .forgot_password {
+      margin-left: 100px;
+      text-decoration: none;
+    }
+    
+    h2 {
+      margin-bottom: 10px;
+    }
+    
+    input[type="password"],
+    input[type="text"] {
+      width: 69%;
+    }
+    
+    input[type="submit"] {
+      float: right;
+    }
+    
+    label {
+      width: 20%;
+    }
+  }
+}
+
+.versions {
+  dd {
+    padding: 1%;
+    
+    p {
+      margin: 0px;
+    }
+  }
+
+  dd:nth-child(even) {
+    background: $btn_dk;
+  }
+}
+//END ADMIN
+
+// Terms and Conditions Styles
+.merchants.terms_and_conditions {
+  h1 {
+    background-color: #e6e6e6;
+    border: 1px solid #5f5f5f;
+    color: darken($bc2, 15%);
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  h2{
+    margin-top: 15px;
+  }
+
+  h3 {
+    color: darken($bc2, 0%);
+    font-size: 1.0em;
+    margin: 5px 0px 5px 15px;
+    
+    span {
+      font-weight: bold;
+    }
+  }
+
+  p{
+    margin: 5px 0px 5px 30px;
+    
+    span {
+      font-weight: bold;
+    }
+  }
+
+  // float accept button right
+  section:last-child form:first-child {
+    float: right;
+  }
+}// END Terms and Conditions Styles
+
+
+// !MEDIA QUERIES******************************************
+//now using the top-down approach. Changed my mind about mobile first
+
+//ipad horizontal and bigger
+@media only screen and (max-width: 1040px) {
+  @import "1040down";
+}
+
+//iPad vertical and bigger
+@media only screen and (max-width: 768px) {
+  @import "768down";
+} 

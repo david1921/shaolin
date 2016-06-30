@@ -1,0 +1,11 @@
+<div class="column_left">
+  <h1>Registration</h1>
+  <p>So we can help you get started, we'd like to know about your business.</p>
+  <%= simple_form_for @registration.decorated, as: :registration, :url => registration_path_for_form(@registration) do |f| %>
+  <%= hidden_field_tag :step, :gross_annual_turnover %>
+    <div class="box">
+      <%= f.input :gross_annual_turnover, tooltip: "These are your estimated earnings (in £) for the current financial year before tax is deducted." %>
+    </div>
+    <%= f.submit I18n.t('next') %>
+  <% end %>
+</div>

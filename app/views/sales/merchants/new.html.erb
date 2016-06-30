@@ -1,0 +1,7 @@
+<h1>Create Merchant</h1>
+<br>
+<div class="column_left">
+	<%= simple_form_for [:sales, @merchant] do |f| %>
+	  <%= render partial: 'form', locals: {f: f, action_name: 'Create', merchant: @merchant} %>
+	<%end%>
+</div>

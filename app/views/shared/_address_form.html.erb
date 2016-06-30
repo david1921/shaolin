@@ -1,0 +1,15 @@
+<% field_name ||= field.parameterize.underscore.to_sym %>
+<%if local_assigns[:field] %>
+  <h4><%= field %></h4>
+<%end%>
+<%= f.simple_fields_for field_name, f.object.send(field_name) || Address.new do |ff| %>
+  <%= content_tag(:fieldset, f.error(field_name)) if f.error(field_name) %>
+
+  <%= ff.input :postcode, label: "Post Code" %>
+  <%= ff.input :address_line_1, label: "Line 1" %>
+  <%= ff.input :address_line_2, label: "Line 2" %>
+  <%= ff.input :address_line_3, label: "Line 3" %>
+  <%= ff.input :address_line_4, label: "Line 4" %>
+  <%= ff.input :address_line_5, label: "Line 5" %>
+  <%= ff.input :post_town, label: "Town" %>
+<% end -%>

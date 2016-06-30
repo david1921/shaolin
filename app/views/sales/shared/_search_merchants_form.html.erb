@@ -1,0 +1,9 @@
+<%= form_tag sales_merchants_path, id: 'merchant-search', method: 'GET' do %>
+  <%= label_tag 'search[name]', 'Name' %>
+  <%= text_field_tag 'search[name]' %>
+
+  <%= label_tag 'search[post_code]', 'Post Code' %>
+  <%= text_field_tag 'search[post_code]' %>
+
+  <%= submit_tag 'Search' %>
+<% end %>

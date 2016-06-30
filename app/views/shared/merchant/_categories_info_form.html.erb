@@ -1,0 +1,26 @@
+<h4>Business Category</h4>
+<%= f.input :primary_business_category, label: "Primary Business Category", collection: I18n.options_for_select_from_scope('options.business_categories'), prompt: ""  %>
+<% secondary_business_category_options = merchant.primary_business_category.present? ?
+ I18n.options_for_select_from_scope("options.secondary_business_categories.#{merchant.primary_business_category}") : [] %>
+<%= f.input :secondary_business_category, label: "Secondary Business Category", collection: secondary_business_category_options %>
+
+<%= content_for :javascript do -%>
+  <%= javascript_tag do %>
+    $(function() {
+      secondaryCategories = <%= I18n.t('options.secondary_business_categories').to_json.html_safe %>;
+      $("#merchant_primary_business_category").change(function() {
+        html = "";
+        values = secondaryCategories[$(this).val()];
+        html += "<option></option>";
+        if(values) {
+          for(var key in values) {
+            html += "<option value=" + key + ">" + values[key] + "</option>";
+          }
+          $("#merchant_cecondary_business_category").removeAttr("disabled");
+        }
+        $("#merchant_secondary_business_category").html(html);
+      });
+    });
+  <% end %>
+<% end -%>
+

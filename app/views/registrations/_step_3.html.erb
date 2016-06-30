@@ -1,0 +1,189 @@
+    <div class="box">
+      <h4>Profile Build</h4>
+      <fieldset>
+        <label id="description_of_company">Description of Company /
+          Services</label><textarea id="description_of_company" rows="10"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <label id="customer_service_email">Customer Service Email
+          <span>(either email or phone required)</span></label><input id="customer_service_email" type="text"/>
+      </fieldset>
+
+      <fieldset>
+        <label id="customer_service_phone">Customer Service Phone
+          <span>(either email or phone required)</span></label><input id="customer_service_phone" type="text"/>
+      </fieldset>
+
+      <div class="row logo"><label for="business_logo">Logo
+        <span>specify file type, max file weight, pixel size tba</span></label><a id="business_logo" class="btn1" href="#">Upload
+        Logo</a></div>
+
+      <div class="row primary"><label for="other_image_1">Image 1
+        <span>specify file type, max file weight, pixel size tba (optional)</span></label><a id="other_image_1" class="btn1" href="#">Upload
+        Image</a></div>
+      <!--Commented out per QA request. Can un-comment if needed in the future
+         <div class="row primary"><label for="other_image_2">Image 2 <span>specify file type, max file weight, pixel size tba (optional)</span></label><a id="other_image_2" class="btn1" href="#">Upload Image</a></div>
+
+         <div class="row primary"><label for="other_image_3">Image 3 <span>specify file type, max file weight, pixel size tba (optional)</span></label><a id="other_image_3" class="btn1" href="#">Upload Image</a></div>
+
+         <div class="row primary"><label for="other_image_4">Image 4 <span>specify file type, max file weight, pixel size tba (optional)</span></label><a id="other_image_4" class="btn1" href="#">Upload Image</a></div>
+
+         <div class="row primary"><label for="other_image_5">Image 5 <span>specify file type, max file weight, pixel size tba (optional)</span></label><a id="other_image_5" class="btn1" href="#">Upload Image</a></div>
+
+         <fieldset>
+             <label for="primary_image_select">Primary Image <span>(optional)</span></label>
+             <select id="primary_image_select">
+                 <option>Select your primary image</option>
+                 <option>Image 1</option>
+                 <option>Image 2</option>
+                 <option>Image 3</option>
+                 <option>Image 4</option>
+                 <option>Image 5</option>
+             </select>
+         </fieldset>
+
+         <fieldset>
+                 <label id="facebook_profile">Facebook page url <span>(optional)</span></label><input id="facebook_profile" type="text" />
+         </fieldset>
+
+         <fieldset>
+                 <label id="facebook_profile">Twitter page url <span>(optional)</span></label><input id="facebook_profile" type="text" />
+         </fieldset>
+         -->
+    </div>
+
+    <div class="box">
+      <h4>Store Details</h4>
+      <fieldset>
+        <label id="website_url">Online Store url <span>(optional)</span></label><input id="website_url" type="text"/>
+      </fieldset>
+
+      <fieldset id="physical_stores">
+        <label for="physical_stores_question">Do you have any physical stores?</label>
+        <ul class="radio_inline">
+          <li><input type="radio" name="barclay_payment_question" value="yes"/>Yes</li>
+          <li><input type="radio" name="barclay_payment_question" value="no"/>No</li>
+        </ul>
+      </fieldset>
+
+      <fieldset id="physical_stores_yes" class="additional_options">
+        <h5>Store 1 Information</h5>
+
+        <div class="store_information">
+          <div class="row"><label for="store_post_code">Post code</label><input id="store_post_code" type="text"/></div>
+          <div class="row">
+            <label for="store_name_number">Premises name and number</label><input id="store_name_number" type="text"/>
+          </div>
+          <div class="row"><label for="address_line_1">Address 1</label><input id="address_line_1" type="text"/></div>
+          <div class="row"><label for="address_line_2">Address 2</label><input id="address_line_2" type="text"/></div>
+          <div class="row"><label for="address_line_3">Address 3</label><input id="address_line_3" type="text"/></div>
+          <div class="row"><label for="address_line_4">Address 4</label><input id="address_line_4" type="text"/></div>
+          <div class="row"><a href="#" class="same_store">Same as registered office</a></div>
+        </div>
+
+        <!--Commenting this section at per QA requesting. Can un-comment if needed later.
+			<div class="opening_hours">
+				<h5>Store 1 Opening Hours <span>(optional)</span></h5>
+
+
+    			<%= render 'shared/store_hours', {day: "Monday", odd_even: "odd"} %>
+    			<%= render 'shared/store_hours', {:day => "Tuesday", :odd_even => "even"} %>
+    			<%= render 'shared/store_hours', {:day => "Wednesday", :odd_even => "odd"} %>
+    			<%= render 'shared/store_hours', {:day => "Thursday", :odd_even => "even"} %>
+    			<%= render 'shared/store_hours', {:day => "Friday", :odd_even => "odd"} %>
+    			<%= render 'shared/store_hours', {:day => "Saturday", :odd_even => "even"} %>
+    			<%= render 'shared/store_hours', {:day => "Sunday", :odd_even => "odd"} %>
+
+
+        <% if false %>
+
+				<div class="row odd"><label for="monday">Monday:</label>
+					<div class="daily_hours">
+						<span>From</span><input id="monday" class="hours" type="text" />
+						<span>to</span><input class="hours" type="text" /><br>
+						<span>and</span><input class="hours" type="text" />
+						<span>to</span><input class="hours" type="text" />
+					</div>
+				</div>
+
+					<div class="row even"><label for="tuesday">Tuesday:</label>
+						<div class="daily_hours">
+							<span>From</span><input id="tuesday" class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" /><br>
+							<span>and</span><input class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" />
+						</div>
+					</div>
+
+					<div class="row odd"><label for="wednesday">Wednesday:</label>
+						<div class="daily_hours">
+							<span>From</span><input id="wednesday" class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" /><br>
+							<span>and</span><input class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" />
+						</div>
+					</div>
+
+					<div class="row even"><label for="thursday">Thursday:</label>
+						<div class="daily_hours">
+							<span>From</span><input id="thursday" class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" /><br>
+							<span>and</span><input class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" />
+						</div>
+					</div>
+
+					<div class="row odd"><label for="friday">Friday:</label>
+						<div class="daily_hours">
+							<span>From</span><input id="friday" class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" /><br>
+							<span>and</span><input class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" />
+						</div>
+					</div>
+
+					<div class="row even"><label for="saturday">Saturday:</label>
+						<div class="daily_hours">
+							<span>From</span><input id="saturday" class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" /><br>
+							<span>and</span><input class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" />
+						</div>
+					</div>
+
+					<div class="row odd"><label for="sunday">Sunday:</label>
+						<div class="daily_hours">
+							<span>From</span><input id="sunday" class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" /><br>
+							<span>and</span><input class="hours" type="text" />
+							<span>to</span><input class="hours" type="text" />
+						</div>
+					</div>
+
+        <% end %>
+
+			</div>--><!-- opening hours -->
+        <div class="facilities">
+          <!--Commenting this section at per QA requesting. Can un-comment if needed later.
+                  <div class="row"><label for="key_facilities">Key store facilities<span>Separate with commas and give example in box e.g parking, toilets, wheelchair access, baby changing (optional)</span></label><textarea id="key_facilities" rows="10"></textarea></div>-->
+          <div class="row"><label for="map">Confirm position on map</label><img src="/assets/static_map.png"/></div>
+          <div class="row"><label for="store_phone">Store phone number
+            <span>(optional)</span></label><input id="store_phone" type="text"/></div>
+          <div class="row"><label for="store_email">Store email address
+            <span>(optional)</span></label><input id="store_email" type="text"/></div>
+          <div class="row"><label for="store_website">Store website
+            <span>(optional)</span></label><input id="store_website" type="text"/></div>
+          <div class="row add"><a href="#">Add another store?</a></div>
+          <div class="row">
+            <p>If you have more than 5 stores, please <a href="#">click here</a> for a Relationship Manager to contact
+              you</p></div>
+        </div>
+      </fieldset>
+
+
+    </div>
+
+    <fieldset>
+      <%= f.submit 'Save and continue' %>
+    </fieldset>

@@ -1,0 +1,21 @@
+<div class="image_ui">
+  <div id="gallery_image_preview_box" style="display:none">
+    <div class="preview_wrap">
+      <div class="gallery_image"></div>
+      <p>Use this image?</p>
+      <button class="cancel">No</button><button class="submit">Yes</button>
+    </div>
+  </div>
+
+  <h3>Offer Image Gallery</h3>
+  <p>Choose an offer image from the gallery below.</p>
+
+  <% @library_images.each do |library_image| %>
+    <div class="image_box">
+      <span class="image_gallery_over" style="display:none">
+        <%= link_to(image_tag('search-ffffff.png', :class => "gallery_search_icon").html_safe + "Click to view", library_image.photo.url, :class => "view_gallery_img", :rel => "prettyPhoto", :"data-library-image-id" => library_image.id, :"data-library-image-thumbnail-url" => library_image.photo.url(:gallery)) %>
+      </span>
+      <%= image_tag(library_image.photo.url(:gallery), :class=> "gallery_thumb") %>
+    </div>
+  <% end %>
+</div>

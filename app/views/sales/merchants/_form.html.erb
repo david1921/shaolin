@@ -1,0 +1,41 @@
+<%= f.error_notification %>
+
+<div class="box">
+	<%= render partial: 'shared/merchant/gross_annual_turnover_info_form', locals: {f: f} %>
+</div>
+<div class="box">
+	<%= render partial: 'shared/merchant/contact_info_form', locals: {f: f, merchant: @merchant} %>
+</div>
+<div class="box">
+	<%= render partial: 'shared/merchant/business_contact_info_form', locals: {f: f} %>
+</div>
+<div class="box">
+	<%= render partial: 'shared/merchant/company_info_form', locals: {f: f} %>
+</div>
+<div class="box">
+	<%= render partial: 'shared/merchant/categories_info_form', locals: {f: f, merchant: @merchant} %>
+</div>
+<div class="box">
+	<%= render partial: 'shared/merchant/bank_info_form', locals: {f: f} %>
+</div>
+<div class="box">
+	<%= render partial: 'shared/merchant/barclays_account_info_form', locals: {f: f} %>
+</div>
+<div class="box">
+  <%= render partial: 'shared/merchant/profile_info_form', locals: {f: f} %>
+</div>
+
+<section class="updates">
+	<div class="updated_at">
+		<%= content_tag(:p, "Created: #{@merchant.created_at}") unless @merchant.new_record? %>
+	</div>
+	<div class="created_at">
+		<%= content_tag(:p, "Last Updated: #{@merchant.updated_at}") unless @merchant.new_record? %>
+	</div>
+</section> 
+
+<%= f.error :base %>
+<%= f.button :submit, 'Submit Registration', name: 'submit' if @merchant.draft? || @merchant.pending_signature? %>
+<%= f.button :submit, 'Save as Draft', name: 'save', class: "save" if @merchant.draft? %>
+<%= f.button :submit, 'Update', name: 'update', class: "save" if !@merchant.draft? && !@merchant.pending_signature? %>
+<%= link_to 'Cancel', dashboard_index_path, class: "btn-danger"  %>

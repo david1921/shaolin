@@ -1,0 +1,140 @@
+<%= simple_form_for @registration.decorated, as: :registration, url: registration_path_for_form(@registration) do |f| %>
+  <% if @registration.errors.present? %>
+    <span class="error_message_large">Have a quick look below: We've highlighted some fields that need your attention.</span>
+  <% end %>
+  <% if @registration.large? %>
+    <%= hidden_field_tag :step, :registration_large %>
+    <section class="form_row">
+      <h2>Contact details</h2>
+      <h5>Please provide your contact details and we'll arrange for someone to get in touch regarding registering for Bespoke.</h5>
+      <%= f.input :contact_title, collection: @registration.valid_contact_titles, required: true, include_blank: "Select One" %>
+
+      <%= f.input :contact_first_name, required: true %>
+      <%= f.input :contact_last_name, required: true %>
+      <%= f.input :trading_name, required: true %>
+      <%= f.input :contact_position, required: true %>
+      <%= f.input :contact_work_phone_number, required: true, label: 'Business phone number' %>
+      <%= f.input :contact_work_email_address, required: true, label: 'Business e-mail address' %>
+      <p>We may use your email address to contact you for administration purposes in relation to your registration or to help you manage your offers.</p>
+
+      <p>We may also send you details of Barclays Group products and services that may be of interest to you. If you don’t want to receive these emails please contact us using our webform</p>
+
+      <%= f.submit I18n.t('submit_details'), class: 'submit_details' %>
+      <div class="clear"></div>
+    </section>
+  <% else %>
+    <%= hidden_field_tag :step, :registration_small %>
+    <section class="form_row">
+      <p>Create your Bespoke Offers profile. We know you’re busy, so we’ve made sure this key information form is quick to fill in.</p>
+
+      <p>To protect consumers who use our service we’ll make a series of checks on your business, including a credit check using the details below. Unfortunately we can only accept UK registered businesses (including Sole Traders & Partnerships) trading in the UK for Bespoke Offers.</p>
+    </section>
+
+    <section class="form_row"><!-- need a more semantic class name than this-->
+      <section class="personal_details">
+        <h2>Your personal details</h2>
+
+        <%= f.input :contact_title, collection: @registration.valid_contact_titles, required: true, include_blank: "Select One" %>
+        <%= f.input :contact_first_name, :hint => true, required: true %>
+        <%= f.input :contact_last_name, required: true %>
+        <%= f.input :contact_position, tooltip: "What is your role in the company? This could e.g. be your job title.", required: true %>
+      </section>
+      <section class="business_contact">
+        <h2>Your business details <span>(the Merchant)</span></h2>
+        <%= f.input :registered_company_name, special_info: "(if registered at Companies House)", required: true %>
+        <%= f.input :trading_name, tooltip: "This is the name your customers will recongise your business by", special_info: "(if different to above)" %>
+        <%= f.input :contact_work_phone_number, required: true, label: 'Business phone number' %>
+        <%= f.input :contact_work_mobile_number, required: true, label: 'Business mobile number' %>
+        <%= f.input :contact_work_email_address, tooltip: "Your email address will be used to log you into the Bespoke offers website.", special_info: "To be used as login", required: true, label: 'Business e-mail address' %>
+      </section><!-- /.business_contact -->
+      <fieldset id="signatory_terms_wrapper">
+        <ul>
+            <li><input type="checkbox" id="signatory_terms_checkbox" />I <span class="signatory_first_name"><%= @registration.contact_first_name %></span><span class="signatory_last_name"> <%= @registration.contact_last_name %></span> confirm that I am an authorised signatory on behalf of <span class="registered_company_name"><%= @registration.registered_company_name %></span> and by ticking the box below I confirm I have read and agree to bind the Merchant to Bespoke Offers <%= link_to 'Standard Terms', terms_path %> and <%= link_to 'Privacy Policy', 'privacy_path' %> and Cookie Policy. </li>
+        </ul>
+      </fieldset>
+      <div class="clear"></div>
+    </section>
+
+    <section class="form_row">
+
+      <section class="company_information">
+        <h2>Company information</h2>
+        <p>We need this information to set you up as an approved merchant</p>
+
+        <%= f.input :primary_business_category, required: true, collection: I18n.options_for_select_from_scope('options.business_categories'), prompt: I18n.t('please_select')  %>
+        <% secondary_business_category_options = @registration.primary_business_category.present? ?
+        I18n.options_for_select_from_scope("options.secondary_business_categories.#{@registration.primary_business_category}") : [] %>
+        <%= f.input :secondary_business_category, collection: secondary_business_category_options, required: true, prompt: I18n.t('please_select'),  wrapper_html: { class: "category_two_wrapper" } %>
+
+        <fieldset id="companies_house" class="additional_info">
+          <label for="companies_house">Are you registered with companies house?</label>
+          <ul class="radio_inline">
+            <li><input id='yes_registered_with_companies_house' type="radio" name="registration[registered_with_companies_house]" value="true" <%= f.object.registered_with_companies_house? ? 'checked=checked' : ''  %> />Yes</li>
+            <li><input type="radio" name="registration[registered_with_companies_house]" value="false" <%= (!f.object.registered_with_companies_house.nil? && !f.object.registered_with_companies_house?) ? 'checked=checked' : ''  %>/>No</li>
+          </ul>
+        </fieldset>
+
+        <fieldset id="companies_house_yes" >
+          <%= f.input :registered_company_number %>
+        </fieldset>
+
+        <%= f.input :business_website_url %>
+      </section><!-- /.company_information -->
+      <section class="address_details">
+        <h2>Address details</h2>
+        <p>Look up your address based on your postcode and build name/number.  This should be your registered office address if registered at Companies House.</p>
+
+        <%= f.simple_fields_for :business_address_attributes do |af| %>
+          <%= af.input :postcode %>
+          <%= af.input :address_line_1 %>
+          <%= af.input :address_line_2 %>
+        <% end %>
+
+        <fieldset>
+          <a class="find_address">Find address</a>
+        </fieldset>
+
+      </section><!-- /.address_details -->
+      <div class="clear"></div>
+    </section>
+
+    <section class="form_row">
+      <section class="create_password">
+        <%= f.simple_fields_for :user do |u| %>
+          <h2>Create a password</h2>
+
+          <%= u.input :password, tooltip: "Please pick a password that is both secure and memorable. It needs to be at least 6 characters long and should include both letters and numbers." do %>
+            <%= u.password_field :password %>
+          <% end %>
+
+          <%= u.input :password_confirmation do %>
+            <%= u.password_field :password_confirmation %>
+          <% end %>
+        <% end %>
+      </section><!-- /.password -->
+      <div class="clear"></div>
+    </section>
+    <section class="form_row">
+      <p>We may use your email address to contact you for administration purposes in relation to your registration or to help you manage your offers.</p>
+
+      <p>We may also send you details of Barclays Group products and services that may be of interest to you. If you don’t want to receive these emails please contact us using our webform.</p>
+      <p>Payment terms specific to the retailer, timing/amount/instalments of payment (subject to successful outcome of credit checks and sanction screening subject to Terms and Conditions)</p>
+
+      <fieldset>
+        <ul>
+            <li><input type="checkbox" id="accept_privacy_and_terms_checkbox" required="required" required data-errormessage-value-missing="HELLO" />I accept Barclaycard Bespoke Offers’ <%= link_to 'Privacy Policy', privacy_path, target: "blank" %> and <%= link_to 'Terms and Conditions', terms_path, target: "blank" %></li>
+        </ul>
+      </fieldset>
+      <%= f.submit I18n.t('submit_details'), class: 'submit_details' %>
+    </section>
+
+  <% end %>
+<% end %>
+
+<%= render partial: 'shared/category_selection', locals: { primary_category_selector: '#registration_primary_business_category', secondary_category_selector: '#registration_secondary_business_category' } %>
+
+<%= content_for :javascript do %>
+  <%= javascript_tag do %>
+    MerchantPortal.Registration(jQuery).init();
+  <% end %>
+<% end %>

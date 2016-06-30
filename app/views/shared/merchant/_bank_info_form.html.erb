@@ -1,0 +1,7 @@
+<h4>Bank Info</h4>
+<%= f.input :business_bank_name, label: "Company Bank Name" %>
+<%= f.input :business_bank_sort_code, label: "Company Bank Sort Code" %>
+<%= f.input :business_bank_account_number, label: "Company Bank Account Number" %>
+<%= f.input :business_bank_account_name, label: "Company Bank Account Name" %>
+
+<%= render partial: 'shared/address_form', locals: { f: f, field: "Business Bank Address", field_name: :business_bank_address} %>

@@ -1,0 +1,156 @@
+/*
+Stylesheet Name: 1040 and up
+Description: Styles for devices ipad horizontal size and smaller
+Author: Analog Analytics
+Version: 1.0
+*/
+
+.help{
+  background: url('/assets/icons/help_lg.png') no-repeat;
+  cursor: help;
+  display:block;
+  height:44px;
+  position: absolute;
+  right:15px;
+  top:15px;
+  text-indent: 0;
+  width:44px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.help[data-tooltip]:before {  
+  right: 15px;
+  top:30px;
+}  
+  
+.help[data-tooltip]:after {  
+  font-size: 1em;
+  padding: 10px;
+  top: 45px;
+  width: 170px;
+}  
+
+.help.inline{
+  top:-10px;
+}
+
+.help.right[data-tooltip]:before{  
+  left: 15px;
+  top:10px;
+}  
+
+//forms
+form{
+  fieldset {
+    margin: .8em 0 0 0;
+  }
+  
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=number],
+  textarea{
+    font-size: 1.1em;
+    padding: .6em .8em;
+  }
+  
+  label{
+    font-size: 1.1em;
+    margin-top: .5em;
+    width: 40%;
+  }
+  
+  input[type="text"], 
+  input[type="password"], 
+  textarea{
+  	width: 39%;
+  }
+}//form
+
+// custom select menu
+select{
+  font-size: .9em;
+  margin-top: .5em;
+  padding: .8em 2.4em .8em 1em;
+}
+
+@-moz-document url-prefix() {
+  select {
+    padding: .3em 2.4em .3em 1em;
+  }
+}
+
+// !header
+header{
+  .branding form{
+    
+    fieldset.register_link{
+      margin: .6em 0 1em;
+      
+      a{
+        display: inline-block;
+        line-height: 1.4;
+      }
+    }
+    
+    .login_form {
+      width: auto;
+              
+      input.login_button{
+        width: 108px; 
+      }
+    }
+  }  
+}//END .header
+
+//adjust the button heights for desktop comps
+.btn1, .btn2, .btn3{
+  font-size: 1.1em;
+  line-height: 1.3;
+  min-height: 44px; //recommended tap area for touch-screen devices
+  padding: .5em 1em;
+}
+
+.registrations .find_address{
+  line-height: 1;
+}
+
+.home {
+  .video_box{
+    padding-bottom: 1em;
+  }
+
+  .content_wrap {
+    @include box-sizing;
+    min-width: 768px;
+    padding: 0 1em;
+    width: auto;
+  }
+
+  p, li{
+    font-size: 1em;
+  }
+
+  #offers p,
+  #offers li{
+    font-size: 1.1em;
+  }
+  
+  .register{
+    line-height: 1.6;
+  }
+  
+}//END .home
+
+.signoff{ 
+  padding-right: 1em;
+  width: auto;
+  
+  .signoff_logo{
+    right: 1em;
+  }
+}
+
+footer{
+  padding: 0 1em;
+}

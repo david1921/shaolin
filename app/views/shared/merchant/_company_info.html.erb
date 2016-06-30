@@ -1,0 +1,27 @@
+<div class="box">
+	<h4>Company Registered Info</h4>
+
+	<p><%= merchant.registered_company_number %></p>
+	<p><%= merchant.registered_with_companies_house %></p>
+	<ul class="merchant_information">
+		<li class="label"><p>Trading Name:</p></li>
+		<li class="value"><p><%= merchant.trading_name %></p></li>
+		<div class="clear"></div>
+	</ul>
+	<ul class="merchant_information">
+		<li class="label"><p>Registered Name:</p></li>
+		<li class="value"><p><%= merchant.registered_company_name %></p></li>
+		<div class="clear"></div>
+	</ul>
+	<%= render partial: 'shared/address', locals: {address: merchant.registered_company_address || Address.new } %>
+	<ul class="merchant_information">
+		<li class="label"><p>Company Number:</p></li>
+		<li class="value"><p><%= merchant.registered_company_number %></p></li>
+		<div class="clear"></div>
+	</ul>
+	<ul class="merchant_information">
+		<li class="label"><p>Registered With Companies House:</p></li>
+		<li class="value"><p><%= merchant.registered_with_companies_house %></p></li>
+		<div class="clear"></div>
+	</ul>
+</div>

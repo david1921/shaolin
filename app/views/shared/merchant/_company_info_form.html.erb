@@ -1,0 +1,41 @@
+<h4>Company Information</h4>
+<%= f.input :paper_application %>
+<%= f.input :registered_with_companies_house, label: "Registered with Companies House" %>
+
+<div id="registered_company_fields">
+  <%= f.input :registered_company_number, label: "Registered Company Number" %>
+  <%= f.input :registered_company_name, label: "Registered Company Name" %>
+  <%= render partial: 'shared/address_form', locals: {f: f, field: "Registered Company Address", field_name: :registered_company_address} %>
+
+  <%= f.input :trading_name_is_registered_company_name, label: "Trading Name is Registered Name" %>
+  <div id="trading_name_fields">
+    <%= f.input :trading_name, label: "Trading Name" %>
+  </div>
+  
+  <%= f.input :trading_address_is_registered_company_address, label: "Trading Address is Registered Address" %>
+  <div id="trading_address_fields">
+    <%= render partial: 'shared/address_form', locals: {f: f, field: "Trading Address", field_name: :trading_address} %>
+  </div>
+
+  <%= f.input :billing_address_is_registered_company_address, label: "Billing Address is Registered Address" %>
+  <div id="billing_address_is_trading_address_fields">
+    <%= f.input :billing_address_is_trading_address, label: "Billing Address is Trading Address" %>
+  </div>
+</div>
+
+<div id="non_registered_company_fields">
+  <%= f.input :business_name, label: "Business Name" %>
+  <%= render partial: 'shared/address_form', locals: {f: f, field: "Business Address", field_name: :business_address} %>
+  <%= f.input :billing_address_is_business_address, label: "Billing Address is Business Address" %>
+</div>
+
+<div id="billing_address_fields">
+  <%= render partial: 'shared/address_form', locals: {f: f, field: "Billing Address", field_name: :billing_address} %>
+</div>
+
+<%= f.input :standard_pre_paid_offer_commission_rate, label: "Standard Offer Commission Rate" %>
+<div id="negotiated_pre_paid_offer_commission_rate_fields">
+  <%= f.input :negotiated_pre_paid_offer_commission_rate, label: "Negotiated Offer Commission Rate" %>
+</div>
+<%= content_for :javascript do -%>
+<% end -%>

@@ -1,0 +1,19 @@
+<header>
+  <div class="account_nav_wrapper">
+  <% if signed_in? %>
+    <%= render "shared/signed_in" %>
+  <% end %>
+  </div><!-- END .account_wrapper -->
+
+  <div class="branding">
+    <%= link_to '', home_path, class: 'header_logo' %>
+    <% if signed_out? %>
+      <%= render "shared/header_login" %>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+
+  <%# if signed_in? %>	
+    <%# render "shared/user_nav" %>
+  <%# end %>
+</header>

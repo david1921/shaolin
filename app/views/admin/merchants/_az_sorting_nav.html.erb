@@ -1,0 +1,7 @@
+<h2><%= "Merchant quick links: A-Z" %></h2>
+<ul class="az_merchant_menu">
+  <% ('A'..'Z').each do |letter| -%>
+    <li class="<%= "first" if letter == 'A' %> <%= "active" if params[:search].present? && params[:search][:name] == "^#{letter}" %>"><%= link_to letter, admin_merchants_path(search: {name: letter}) %> |</li>
+  <% end -%>
+  <li class="last"><%= link_to 'All', admin_merchants_path %></li>
+</ul>

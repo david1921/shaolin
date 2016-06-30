@@ -1,0 +1,224 @@
+<div id="key_information_form">
+  <table class="section">
+    <tr>
+      <td>Date</td>
+      <td><%= l(Date.today, format: :long) %> </td>
+    </tr>
+  </table>
+
+  <table class="section">
+    <tr>
+      <td>Merchant name (registered company name if registered at Companies House)</td>
+      <td>
+        <p class="definition">("Merchant")</p><p><%= offer.merchant.registered_with_companies_house ? offer.merchant.registered_company_name : offer.merchant.business_name %></p>
+      </td>
+    </tr>
+    <tr>
+      <td >Address (registered office address if registered at Companies House. If not registered at Companies House this should be your primary business place)</td>
+      <td><%= address_paragraphs(offer.merchant.registered_with_companies_house ? offer.merchant.registered_company_address : offer.merchant.business_address) %></td>
+    </tr>
+  </table>
+
+  <table class="section" style="margin-top: 2em">
+    <tr>
+      <td colspan="2" class="head">OFFER CATEGORIES AND OBJECTIVES</td>
+    </tr>
+    <tr>
+      <td>Offer type</td>
+      <td><%= t(offer.type, scope: [:offer, :type]) %></td>
+    </tr>
+    <tr>
+      <td>Offer objective</td>
+      <td><strong><%= t(offer.objective, scope: [:offers, :objectives, :names]) %></strong><br/><%= t(offer.objective, scope: [:offers, :objectives, :descriptions]) %></td>
+    </tr>
+    <tr>
+      <td>Primary business category (and sector)</td>
+      <td><%= t(offer.primary_category, scope: [:options, :business_categories]) %></td>
+    </tr>
+    <tr>
+      <td>Secondary business category (and sector)</td>
+      <td><%= t(offer.secondary_category, scope: [:options, :business_categories]) %></td>
+    </tr>
+  </table>
+
+  <table class="section">
+    <tr>
+      <td colspan="2" class="head">OFFER DATES</td>
+    </tr>
+    <tr>
+        <td>Earliest start date for your offer</td>
+      <td><%= l(offer.earliest_start_date.to_date, format: :long) if offer.earliest_start_date %></td>
+    </tr>
+    <tr>
+      <td>Duration that your offer will be available on site</td>
+      <td><%= offer.duration %> days</td>
+    </tr>
+    <tr>
+      <td>Latest marketable date of your offer</td>
+      <td><%= l(offer.latest_marketable_date.to_date, format: :long) if offer.latest_marketable_date %></td>
+    </tr>
+  </table>
+
+  <table class="section">
+    <tr>
+      <td colspan="2" class="head">OFFER DETAILS</td>
+    </tr>
+    <tr>
+      <td>Offer title</td>
+      <td><%= offer.title %></td>
+    </tr>
+    <% if offer.original_price_cents.present? %>
+      <tr>
+        <td>Original retail price. This must be the price have actually sold your product or service at in the most recent period. (Please note, you will be asked to verify your pricing as part of our offer review/approval process)</td>
+        <td><%= number_to_currency(offer.original_price_cents/100.0) %></td>
+      </tr>
+    <% end %>
+    <% if offer.bespoke_price_cents.present? %>
+      <tr>
+        <td>Bespoke offers price</td>
+        <td><%= number_to_currency(offer.bespoke_price_cents/100.0) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>Offer description</td>
+      <td><%= offer.description %></td>
+    </tr>
+  </table>
+
+  <table class="section">
+    <tr>
+      <td colspan="2" class="head">VOUCHER REDEMPTION RESTRICTIONS</td>
+    </tr>
+    <tr>
+      <td>Maximum number of vouchers. This is important to ensure that you don't provide more offers than you can fulfill. You may be asked to verify your capacity cap.</td>
+      <td><strong>Proposed Quantity Cap:</strong> <%= offer.maximum_vouchers %> vouchers</td>
+    </tr>
+    <tr>
+      <td>Earliest redemption date</td>
+      <td><%= l(offer.earliest_redemption.to_date, format: :long) if offer.earliest_redemption %></td>
+    </tr>
+    <tr>
+      <td>Voucher expiry date</td>
+      <td><%= l(offer.voucher_expiry.to_date, format: :long) if offer.voucher_expiry %></td>
+    </tr>
+    <tr>
+      <td>Where can customers use their vouchers?</td>
+      <td>
+          <ul class="where_to_use_vouchers">
+          <% if offer.can_redeem_online -%>
+            <li><span>Online:</span><%= link_to offer.redemption_website_url %></li>
+          <% end -%>
+          <% if offer.can_redeem_by_phone -%>
+            <li><span>Phone:</span><%= content_tag :span, offer.redemption_phone_number %></li>
+          <% end -%>
+          <% if offer.stores_can_redeem_at.any? -%>
+            <li>
+              <span>Outlets:</span>
+              <ul>
+                <% offer.stores_can_redeem_at.each do |store| -%>
+                  <li>
+                    <%= store.name %><% if store.address -%><%= store.address.address_line_1.present? ? ", #{store.address.address_line_1}" : nil %><%= store.address.post_town.present? ? ", #{store.address.post_town}" : nil %><% end -%>
+                  </li>
+                <% end -%>
+              </ul>
+            </li>
+          <% end -%>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <table class="section">
+    <tr>
+      <td colspan="2" class="head">VOUCHER CODES AND IMAGES</td>
+    </tr>
+    <tr>
+      <td>Do you want to use your own Voucher Codes?</td>
+      <td><%= offer.use_merchant_supplied_voucher_code ? "YES" : "NO" %></td>
+    </tr>
+    <tr>
+      <td>Do you want to use your own Offer Image?</td>
+      <td><%= offer.use_merchant_supplied_image ? "YES" : "NO" %></td>
+    </tr>
+  </table>
+
+  <table class="section">
+    <tr>
+      <td colspan="2" class="head">OFFER TARGETING</td>
+    </tr>
+    <tr>
+      <td>Targeting criteria</td>
+      <td>
+        <%- if offer.offer_targeting_criteria.present? -%>
+          <%- offer.offer_targeting_criteria.map do |criterion| -%>
+            <p class="address-line"><%= formatted_offer_targeting_criterion_type(criterion).upcase %>:&nbsp;<%= formatted_offer_targeting_criterion_value(criterion) %></p>
+          <%- end -%>
+        <%- else -%>
+          Target All
+        <%- end -%>
+      </td>
+    </tr>
+    <tr>
+      <td>Would you like customers to be able to share this Offer via email or social media?</td>
+      <td><%= offer.allow_social_media_sharing ? "YES" : "NO" %></td>
+    </tr>
+  </table>
+
+  <%- unless offer.standard_pre_paid_offer_commission_rate? -%>
+  <table class="section">
+    <tr>
+      <td class="head">OFFER COMMISSION</td>
+    </tr>
+    <tr>
+      <td class="body">
+        <p>Offer Commission and payment terms are detailed in the Key Information Form. Any variation to the Offer Commission as set out below will only apply to the specific offer detailed in this form and will supersede the Offer Commission agreed in the Key Information Form only with regards to this Offer. This section will integrate the KIF and form an integral part of the Agreement between the Merchant and Barclaycard.</p>
+
+        <h3>Offer Commission</h3>
+        <p>Below we've set out the Offer Commission that will be payable to us by you as the Merchant, for this Offer. By completing this section you as the Merchant agree to bind the Merchant to the Offer Commission detailed below and override the Offer Commission originally agreed in the Key Information form for this Offer:</p>
+        <p>For Pre-Paid Offers: <strong id="negotiated_pre_paid_offer_commission_rate"><%= offer.negotiated_pre_paid_offer_commission_rate %></strong> per cent of the purchase price per Pre-Paid Offer sold to Customers.</p>
+      </td>
+    </tr>
+  </table>
+  <%- end -%>
+
+  <table class="section">
+    <tr>
+      <td class="head">CONFIRMATION</td>
+    </tr>
+    <tr>
+      <td class="body">
+        <p>The Merchant will be required to provide electronic and or paper evidence to support the information set out in the submitted offer; to enable Barclaycard to verify that information; and to ensure compliance with applicable statutory and regulatory obligations.  Appropriate evidence will need to be submitted in a timely fashion.  Failure to do so will jeopardise the publication of the offer.</p>
+
+        <p>The Merchant authorised signatory on behalf of the Merchant confirms that they agree and will abide by the attestations detailed below (please read and tick each box):</p>
+        <%= check_box_tag(:pricing_attestation, "1", true, disabled: true, class: "attestation_check_box") %>
+        <h3>Pricing attestation</h3>
+
+        <p class="attestation">By entering the information above I am confirming that:
+        <br/>a) the prices stated in this offer are correct;
+        <br/>b) that the original retail prices stated in the offer have not been inflated for the purpose of the Offer; and 
+        <br/>c) that the goods/services to which the offer relates were generally sold at the original retail price stated in this form.</p>
+
+        <p class="attestation">I also confirm that the Merchant can provide sufficient information and evidence to verify these statements on price.</p>
+
+        <%= check_box_tag(:capacity_attestation, "1", true, disabled: true, class: "attestation_check_box") %>
+        <h3>Capacity attestation</h3>
+        <p class="attestation">By entering the information above I confirm that the Merchant can:
+        <br/>a) fulfil the offer submitted on Barclaycard Bespoke Offers, including being able to supply the quantities of goods/services set out in the offer;
+        <br/>b) provide the goods and services in accordance with the features and quality set out in the offer; 
+        <br/>c) provide the goods/services set out in the offer within any timeframes stated in the offer and no further restrictions other than those stated in this form will apply to the offer to be placed on the</p>
+
+        <%= check_box_tag(:claims_attestation, "1", true, disabled: true, class: "attestation_check_box") %>
+        <h3>Claims attestation</h3>
+        <p class="attestation">By entering the information above I confirm that any and all claims and representations about the goods/services contained in the offer (including any claims about the performance and properties of the goods/services), are fair, true and accurate, and can be substantiated robust and verifiable documentary evidence.</p>
+
+        <%= check_box_tag(:permissions_attestation, "1", true, disabled: true, class: "attestation_check_box") %>
+        <h3>Permissions attestation</h3>
+        <p class="attestation">In submitting this offer, and accepting the Standard Terms, I confirm that the Merchant has (where applicable) all licences, permissions , consents, approvals and qualifications (e.g. licences to practice; licence from manufacturer to sell the products in the offer; permission to market any third party branding, images etc), necessary and required to make this offer available on Barclaycard Bespoke Offers and to offer and provide the goods/services contained in the offer to customers.</p>
+      </td>
+    </tr>
+  </table>
+</div>
+<p><strong>THE UNDERSIGNED CONFIRMS THAT</strong> they are an authorised signatory and are authorised on behalf of the Merchant to accept and bind the Merchant to these terms. The Merchant agrees that the Standard Terms, this Key Information Form (and any variation of them) and any Offer Specification created as a result of this form, once approved, constitute the entire Agreement between the Parties in respect of the Merchant's participation in Barclaycard Bespoke Offers.</p>
+
+<p><strong>Signed by:</strong> <%= offer.merchant.contact_first_name.to_s.upcase %> <%= offer.merchant.contact_last_name.to_s.upcase %></p>
+<p><strong>by and on behalf of</strong> <%= offer.merchant.registered_with_companies_house ? offer.merchant.registered_company_name : offer.merchant.business_name %></p>

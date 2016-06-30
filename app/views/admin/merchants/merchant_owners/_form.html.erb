@@ -1,0 +1,10 @@
+<div class="box">
+  <%= form.input :title, collection: form.object.valid_titles,  required: true  %> 
+  <%= form.input :first_name %>
+  <%= form.input :last_name %>
+  <%= form.input :home_postal_code %>
+  <%= form.input :home_address, as: :multi_line_text, input_html: { rows: 5 } %>
+</div>
+
+<%= form.submit text %>
+<%= button_to_function("Cancel", "window.location.href = '#{redirect_to_return_to_or_default_path(edit_admin_merchant_path(@merchant))}'", :class => "btn-danger") %>

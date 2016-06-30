@@ -1,0 +1,14 @@
+﻿TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_registered_company_name CONTENT=Some<SP>Merchant
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_trading_name CONTENT=Merchant<SP>XYZ
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_contact_work_phone_number CONTENT=02<SP>1234<SP>5678
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_contact_work_mobile_number CONTENT=
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_contact_work_phone_number CONTENT=02<SP>1234<SP>5678
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_contact_work_mobile_number CONTENT=07<SP>1234<SP>56790
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_contact_work_email_address CONTENT=support@merchant.co.uk
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_contact_first_name CONTENT=James
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_contact_last_name CONTENT=Bramblebush
+TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/registrations ATTR=ID:registration_contact_position CONTENT=Owner
+SET !ENCRYPTION NO
+TAG POS=1 TYPE=INPUT:PASSWORD FORM=ACTION:/registrations ATTR=ID:registration_password CONTENT=password
+TAG POS=1 TYPE=INPUT:PASSWORD FORM=ACTION:/registrations ATTR=ID:registration_password_confirmation CONTENT=password
+TAG POS=1 TYPE=INPUT:CHECKBOX FORM=ACTION:/registrations ATTR=ID:registration_privacy_policy CONTENT=YES

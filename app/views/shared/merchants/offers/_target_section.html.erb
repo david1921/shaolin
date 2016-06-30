@@ -1,0 +1,28 @@
+  <section class="target_audience">
+    <h4>Who would you like to reach with this offer?</h4>
+    <div class="fieldset_container">
+      <%= label_tag 'target_all' %>
+      <%= f.check_box :target_all %>
+    </div>
+    <div id="targeting_options" class="fieldset_container" <%= "style='display: none;'".html_safe if @offer.target_all %>>
+      <%= f.input :target_age_ranges, as: :check_boxes, collection: OfferTargetingCriterion::TARGET_AGE_RANGES %>
+      <%= f.input :target_genders, as: :check_boxes, collection: OfferTargetingCriterion::TARGET_GENDERS.map { |g| [g, g.titlecase] }, value_method: :first, label_method: :last %>
+      <%= f.input :target_annual_incomes, as: :check_boxes, collection: OfferTargetingCriterion::TARGET_ANNUAL_INCOMES %>
+      <%= f.input :target_distance_from_location, as: :check_boxes, collection: OfferTargetingCriterion::TARGET_DISTANCES_FROM_LOCATION %>
+      <%= f.input :target_spend_per_transaction_with_merchant, as: :check_boxes, collection: OfferTargetingCriterion::TARGET_SPEND_PER_TRANSACTION_WITH_MERCHANT %>
+      <%= f.input :target_spend_per_transaction_in_sector, as: :check_boxes, collection: OfferTargetingCriterion::TARGET_SPEND_PER_TRANSACTION_IN_SECTOR %>
+      <%= f.input :target_spend_frequency_per_week_with_merchant, as: :check_boxes, collection: OfferTargetingCriterion::TARGET_SPEND_FREQUENCY_PER_WEEK_WITH_MERCHANT %>
+      <%= f.input :target_spend_frequency_per_week_in_sector, as: :check_boxes, collection: OfferTargetingCriterion::TARGET_SPEND_FREQUENCY_PER_WEEK_IN_SECTOR %>
+    </div>
+    <% if show_attestation_fields %>
+      <div class="fieldset_container">
+        <%= f.input :allow_social_media_sharing, label: "Allow sharing via email and social media" %>
+        <%= f.input :pricing_attestation %>
+        <%= f.input :capacity_attestation %>
+        <%= f.input :claims_attestation %>
+        <%= f.input :permissions_attestation %>
+      </div>
+  <% end %>
+  </section>
+
+

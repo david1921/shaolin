@@ -1,0 +1,100 @@
+// Place all the styles related to the admin/library_images controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// import global mixins
+@import "mixins";
+
+// import global variables 
+@import "variables";
+
+// @group LIGHTBOX OVERRIDES ***********************************************************
+.pp_pic_holder{
+  background:#f6f6f6;
+}
+
+div.pp_default .pp_close{
+  background:url(/assets/lightbox-close.png) no-repeat;
+  right:-17px;
+  top:-12px;
+  &:hover{
+   opacity:1.0;
+  }
+}
+
+div.ppt{
+  color:$bc1;
+  font-size:24px;
+  padding-top:20px;
+}
+div.pp_default .pp_content, div.light_rounded .pp_content{
+  background:none;
+}
+
+.pp_right button{
+  background: #dd85b1; /* Old browsers */
+  background: -moz-linear-gradient(top, #dd85b1 0%, #de2080 2%, #c41c71 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dd85b1), color-stop(2%,#de2080), color-stop(100%,#c41c71)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #dd85b1 0%,#de2080 2%,#c41c71 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #dd85b1 0%,#de2080 2%,#c41c71 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #dd85b1 0%,#de2080 2%,#c41c71 100%); /* IE10+ */
+  background: linear-gradient(top, #dd85b1 0%,#de2080 2%,#c41c71 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dd85b1', endColorstr='#c41c71',GradientType=0 ); /* IE6-8 */
+  border: 1px solid #A3155D;
+  @include border-radius(25px);
+  bottom: 27px;
+  color: #FFFFFF;
+  padding: 7px 12px;
+  position: relative;
+  right: 184px;
+  width: 195px;
+}
+
+.pp_left button{
+  background:none;
+  border:none;
+  bottom: 27px;
+  left: 5px;
+  position: relative;
+}// @end Lightbox overrides
+
+
+.library_images {
+  list-style-type: none;
+  padding: 40px 0;
+  width: 800px;
+
+  .library_image {
+    border: 1px solid #c0c0c0;
+    box-shadow: 4px 4px 5px #aaaaaa;
+    webkit-box-shadow: 4px 4px 5px #aaaaaa;
+    background-color: white;
+    float: left;
+    line-height: 0;
+    margin: 0 0 40px 40px;
+    padding: 30px 10px;
+    position: relative;
+
+    .kill {
+      top: 15px;
+      display: block;
+      font-size: 12px;
+      position: absolute;
+      right: 10px;
+    }
+    .edit {
+      bottom: 15px;
+      display: block;
+      font-size: 12px;
+      position: absolute;
+      right: 10px;
+    }
+    .drag {
+      bottom: 15px;
+      cursor: move;
+      display: block;
+      font-size: 12px;
+      left: 10px;
+      position: absolute;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<h2>Validate Merchant</h2>
+<br>
+<div class="column_left">
+  <%= simple_form_for [:admin,@merchant], url: admin_merchant_validation_path do |f| %>
+    <%= f.error_notification %>
+
+    <div class="box">
+      <%= render partial: 'shared/merchant/gross_annual_turnover_info_form', locals: {f: f} %>
+    </div>
+
+    <div class="box">
+      <%= render partial: 'shared/merchant/contact_info_form', locals: {f: f, merchant: @merchant} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/company_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/business_contact_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/categories_info_form', locals: {f: f, merchant: @merchant} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/bank_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/barclays_account_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/profile_info_form', locals: {f: f} %>
+    </div>
+
+    <div class="box">
+      <%= f.input :paper_application %>
+      <%= f.input :negotiated_pre_paid_offer_commission_rate %>
+    </div>
+
+    <div class="box">
+      <h4>Additional Information</h4>
+      <%= f.input :exposure_limit %>
+      <%= f.input :existing_barclays_customer %>
+    </div>
+
+    <%= render partial: 'admin/merchants/merchant_owners/index' %>
+    <%= f.error :merchant_owners %>
+
+    <br/>
+    <div class="box">
+      <div>Merchant Id: <%= @merchant.id %></div>
+      <div>Record Id: <%= current_user.id %></div>
+      <%= content_tag(:div, link_to("Key Information Form", admin_key_information_agreement_path(@merchant.key_information_agreements.last))) unless @merchant.key_information_agreements.empty? %>
+    </div>
+    <br/>
+
+
+    <%= f.submit @merchant.status == 'submitted' || @merchant.status_was == 'submitted' ? 'Save' : 'Suspend' %>
+    <%= f.submit 'Approve' %>
+    <%= f.submit 'Decline' %>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+<%= (key_information_form = render(partial: "shared/offer/key_information_form", locals: { offer: @offer })) %>￼
+<% f.object.key_information_agreements.first ||  f.object.key_information_agreements.build %>
+<%= f.fields_for :key_information_agreements  do |kig|%>
+  <%= kig.input :electronically_signed, label: 'Click here to electronically sign this agreement' %>
+  <%= kig.input :html, as: :hidden, input_html: { value: raw(CGI::escapeHTML(key_information_form)) } %>
+<% end %>
+<%= link_to "Amend", edit_offer_path(@offer, view_step: 1), class: 'btn1' %>

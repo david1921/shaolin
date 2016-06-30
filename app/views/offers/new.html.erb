@@ -1,0 +1,17 @@
+<%= render partial: 'progress' %>
+
+<div class="new_offer_head_wrap">
+  <h1><%= offer_title(@view_step) %></h1>
+  <% if @offer.errors.present? %>
+    <span class="error_message_large">Have a quick look below: We've highlighted some fields that need your attention.</span>
+  <% end %>
+  <h5>Our copywriters will then take all the information you give us,<br>suggest any changes, and send this back to you for your review.</h5>
+  <%= offer_progress_span(@offer) %>
+  
+</div><!-- END .new_offer_head_wrap -->
+<%= simple_form_for @offer do |f| %>
+  <%= render partial: 'step_1', locals: { f: f }  %>
+  <%= f.submit I18n.t('next'), class: 'next' %>
+<% end %>
+
+<%= render partial: 'shared/category_selection', locals: { primary_category_selector: '#offer_primary_category', secondary_category_selector: '#offer_secondary_category' } %>

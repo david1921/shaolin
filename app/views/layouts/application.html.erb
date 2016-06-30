@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]>
+<html class="no-js ie7 ie8 ie"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="no-js ie8 ie"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="no-js ie9 ie"> <![endif]-->
+<html class="no-js">
+<head>
+  <title>MerchantPortal</title>
+  <!-- Tells the iPhone not to shrink the page to fit into its tiny window -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <%= favicon_link_tag '/favicon.ico', :type=> 'image/x-icon' %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+
+  <!--[if lte IE 9 ]>
+    <%= stylesheet_link_tag "application-ie", :media => "all" %>
+    <%= javascript_include_tag "application-ie" %>
+  <![endif]-->
+  
+  <!-- video player for the landing page change this to whatever format it needs to be if it should be different-->
+  <!-- <script type="text/javascript" src="http://html5.kaltura.org/js" > </script> -->
+
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+<!--[if IE 6]><%= render 'shared/ie_6_message' %><![endif]-->
+<%= render_eu_cookie_message %>
+<%= render 'shared/no_js_message' %>
+<div class="center page_wrap">
+  <%= render :partial => "shared/header" %>
+  <%= render "shared/flash_messages" %>
+  <div id="analog_analytics" class="content">
+    <%= raw yield %>
+  </div>
+  <!-- END #analog_analytics -->
+  <div class="clear"></div>
+  <!--we shouldn't need this div after the user nav is moved to the header partial -->
+  <div class="push"></div>
+</div>
+<!-- END .page_wrap -->
+<%= render :partial => "shared/footer" unless "#{params[:action]}" == "image_library_popup" %>
+<%= javascript_include_tag "application" %>
+<%= yield :javascript %>
+</body>
+</html>

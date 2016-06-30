@@ -1,0 +1,9 @@
+/**
+ *= require_self
+ *= require_tree ./all
+ *= require_tree ./admin
+ *= require_tree ./sales
+ *= require prettyPhoto
+ *= require global
+ *= require retina
+*/

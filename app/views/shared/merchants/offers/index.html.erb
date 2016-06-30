@@ -1,0 +1,35 @@
+<h1>Offers for <%= @merchant.display_name %></h1>
+<div class="admin_table_container">
+  <section class="merchant_options">
+    <%= link_to 'New Offer', send("new_#{namespace}_merchant_offer_path", @merchant), class: 'btn3' %>
+    <div class="clear"></div>
+  </section>
+  <%if @merchant.offers.any? -%>
+    <div class='data offers offers_table'>
+      <ul class="header">
+          <li class="offers_id"><h4>ID</h4></li>
+          <li class="offers_status"><h4>Status</h4></li>
+          <li class="offers_created_by"><h4>Created By</h4></li>
+          <li class="offers_created_at"><h4>Created At</h4></li>
+          <li class="offers_actions"><h4>Actions</h4></li>
+      </ul>
+      <div class="clear"></div>
+        <div class="offers_count" data-offer-count="<%= @merchant.offers.length %>">
+          <% @merchant.offers.each_with_index do |offer, index| %>
+            <ul id="merchant_row_<%= index %>" class="merchant_row">
+              <li class="offers_id column"><%= offer.id %></li>
+              <li class="offers_status column"><%= offer.status %></li>
+              <li class="offers_created_by column"><%= offer.user.try :id %></li>
+              <li class="offers_created_at column"><%= offer.created_at.strftime('%m/%d/%y') %></li>
+              <li class="offers_actions column"><%= link_to 'Edit', send("edit_#{namespace}_merchant_offer_path", @merchant, offer), class: "edit_btn action_btn" %></li>
+              <div class="clear"></div>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <%else-%>
+    <p>No offers</p>
+  <%end-%>
+  <p><%= link_to 'Search Merchants', send("#{namespace}_merchants_path"), class: 'btn3'%></p>
+</div>

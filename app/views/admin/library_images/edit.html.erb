@@ -1,0 +1,16 @@
+<div class="column_left">
+  <h1>Edit Library Image</h1>
+  <%= simple_form_for [:admin, @library_image] do |f| %>
+    <div class="box">
+      <fieldset>
+        <label></label>
+        <%= image_tag(@library_image.photo.url(:review), :class => "library_image_photo") %>
+      </fieldset>
+      <% if @library_image.photo.file? -%>
+      <% end -%>
+      <%= f.input :photo %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
+

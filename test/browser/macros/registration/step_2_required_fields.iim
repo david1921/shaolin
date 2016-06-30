@@ -1,0 +1,7 @@
+﻿' Form ID removed from TAG commands because the registration id is always different
+TAG POS=1 TYPE=SELECT ATTR=ID:registration_primary_business_category CONTENT=%Clothing<SP>and<SP>accessories
+TAG POS=1 TYPE=INPUT:RADIO ATTR=ID:registration_has_online_store_false
+TAG POS=1 TYPE=INPUT:RADIO ATTR=ID:registration_has_mail_order_false
+TAG POS=1 TYPE=INPUT:TEXT ATTR=ID:registration_business_bank_account_name CONTENT=checking
+TAG POS=1 TYPE=INPUT:TEXT ATTR=ID:registration_business_bank_account_number CONTENT=12345678
+TAG POS=1 TYPE=INPUT:TEXT ATTR=ID:registration_business_bank_sort_code CONTENT=abc

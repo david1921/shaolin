@@ -1,0 +1,27 @@
+/*
+Stylesheet Name: 768 and up
+Description: Styles for devices with screen resolutions 768px wide and up (the iPad at horizontal and vertical resolution)
+Author: Analog Analytics
+Version: 1.0
+*/
+
+.tabs{
+  .tab_nav {
+    min-width: 708px;
+    
+    li{
+      a {
+        padding: .4em 2em;
+      }
+    
+      &:first-child a{
+        padding-top: 1em;
+      }
+
+    }//li
+  }//.tab_nav
+}
+
+fieldset.inline_checkbox{
+  margin-left: 46%;
+}

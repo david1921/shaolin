@@ -1,0 +1,15 @@
+<h1>Key Information Form</h1>
+
+<%= (key_information_form = render(partial: "shared/merchant/key_information_form", locals: { merchant: @merchant })) %>
+
+<%= simple_form_for [:sales, @merchant, @key_information_agreement] do |f| %>
+  <%= hidden_field_tag("key_information_agreement[html]", raw(CGI::escapeHTML(key_information_form))) %>
+  <%= hidden_field_tag("key_information_agreement[signature_params][name]", "signature.svg") %>
+  <%= hidden_field_tag("key_information_agreement[signature_params][type]") %>
+  <%= hidden_field_tag("key_information_agreement[signature_params][data]") %>
+
+  <div id="signature_box"></div>
+  <a id="signature_reset" href="#">Clear Signature</a>
+
+  <%= f.button :submit, 'Confirm & Submit', id: "submit" %>
+<% end %>

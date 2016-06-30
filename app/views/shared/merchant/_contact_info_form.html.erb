@@ -1,0 +1,7 @@
+<h4>Contact Info</h4>
+<%= f.input :contact_title, collection: merchant.valid_contact_titles, include_blank: "Select One", label: "Title" %>
+<%= f.input :contact_first_name, label: "First Name" %>
+<%= f.input :contact_last_name, label: "Surname" %>
+<%= f.input :contact_position, label: "Position in Company" %>
+<!--TODO: Should be checkbox? -->
+<%= f.input :legal_representative, label: "Contact is authorised to sign on behalf of the company"%>

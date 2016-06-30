@@ -1,0 +1,10 @@
+<div class="column_left">
+  <h1>New Library Image</h1>
+  <%= simple_form_for [:admin, @library_image] do |f| %>
+    <div class="box">
+      <%= f.input :photo %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
+

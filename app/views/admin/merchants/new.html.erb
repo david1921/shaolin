@@ -1,0 +1,58 @@
+<h2>New Merchant Setup</h2>
+<div class="test_data_wrapper">
+  <% unless Rails.env.production? %>
+    <%= link_to "Load Test Data", new_admin_merchant_path(test_data: 1), :class => "load_data" %>
+    <%= link_to "Clear All Data", new_admin_merchant_path, :class => "clear_data" %>
+  <% end %>
+</div><!--/test_data_wrapper-->
+
+<div class="column_left">
+  <%= simple_form_for [:admin, @merchant] do |f| %>
+    <%= f.error_notification %>
+
+    <div class="box">
+      <%= render partial: 'shared/merchant/gross_annual_turnover_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/contact_info_form', locals: {f: f, merchant: @merchant} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/company_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/business_contact_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/categories_info_form', locals: {f: f, merchant: @merchant} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/bank_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/barclays_account_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/profile_info_form', locals: {f: f} %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/signature' %>
+    </div>
+    <div class="box">
+      <%= render partial: 'shared/merchant/checks_info_form', locals: {f: f, merchant: @merchant} %>
+    </div>
+
+    <section class="updates">
+      <div class="updated_at">
+        <p>Last Updated: <%= @merchant.updated_at %></p>
+      </div>
+      <div class="created_at">
+        <p>Created: <%= @merchant.created_at %></p>
+      </div>
+    </section>
+
+    <%= f.error :base %>
+    <%= f.button :submit, 'Submit', name: 'submit' %>
+    <%= f.button :submit, 'Save', :class => "save", name: 'save' if @merchant.draft? %> 
+    <%= link_to 'Cancel', dashboard_index_path, :class => "btn-danger" if @merchant.pending_signature? %>
+  <% end %>
+</div><!--/column_left-->

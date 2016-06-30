@@ -1,0 +1,4 @@
+<h2> Edit Owner: <%= "#{@merchant_owner.first_name} #{@merchant_owner.last_name}" %></h2>
+<%= simple_form_for [:admin, @merchant, @merchant_owner] do |f| -%>
+  <%= render :partial => "form", :object => f, locals: {text: 'Update owner'} %>
+<% end -%>

@@ -1,0 +1,7 @@
+<div class="account_nav_content">
+  <p class="welcome"><%= current_user.display_name %></p>
+	<div class="user_info">
+		<p class="company">Company Name</p>
+    <%= link_to 'Log out', logout_path, :method => :delete, :class => 'logout' %>
+	</div>
+</div>

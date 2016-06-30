@@ -1,0 +1,156 @@
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $(function() {
+      var $standardCommission = $("#offer_standard_pre_paid_offer_commission_rate");
+
+      function insertStoresSelector() {
+        $("#stores_selector_container").html($("#stores_selector").html());
+      }
+      $("#can_redeem_at_selected_outlets").click(function() {
+        insertStoresSelector();
+      });
+      $("#can_redeem_at_outlets, #cannot_redeem_at_outlets").click(function() {
+        $("#stores_selector_container").html("");
+      });
+      <%- if @offer.can_redeem_at_selected_outlets? -%>
+      insertStoresSelector();
+      <%- end -%>
+
+
+      function toggleCommissionElements() {
+        var type = $("input:radio[name='offer[type]']:checked").val();
+        $('#offer_commission_section').toggle('prepaid' == type);
+      }
+      $("input:radio[name='offer[type]']").click(toggleCommissionElements);
+      toggleCommissionElements();
+
+      function toggleNegotiatedCommissionElement() {
+        $("#negotiated_pre_paid_offer_commission_rate_fields").toggle(!$standardCommission.is(':checked'));
+      }
+      $standardCommission.click(toggleNegotiatedCommissionElement);
+      toggleNegotiatedCommissionElement();
+    });
+  <% end %>
+<% end %>
+<div id="stores_selector_hider" style="display:none">
+  <div id="stores_selector">
+    <% @merchant.stores.each do |store| %>
+      <div class="store_select">
+      <%= check_box_tag "offer[store_ids][]", store.id, @offer.stores.include?(store) %>
+      <%= store.address %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if @offer.new_record? && !Rails.env.production? %>
+  <div class="test_data_wrapper">
+    <%= link_to "Load Test Data", send("new_#{namespace}_merchant_offer_path", test_data: 1), class: "load_data" %>
+    <%= link_to "Clear All Data", send("new_#{namespace}_merchant_offer_path"), class: "clear_data" %>
+  </div>
+<% end %>
+
+<% if !@offer.new_record? && @offer.key_information_agreements.present? && !current_user.is_sales? %>
+  <%= link_to "View Offer Setup Form", send("#{namespace}_offer_key_information_agreement_path", @offer.to_param, @offer.key_information_agreements.last.to_param) %>
+<% end %>
+
+<%= simple_form_for [namespace.intern, @merchant, @offer] do |f| %>
+
+   <%= f.error_notification %>
+  <section class="free_or_pre_paid">
+    <%= f.input :type, as: :radio_buttons, collection: Offer::TYPES.map { |t| [t, t.humanize] }, value_method: :first, label_method: :last, :label_html => { :class => "section_title" }, label: "Type" %>
+  </section>
+  <section class="objective">
+    <% objective_options = @merchant.large? ? Offer::LARGE_OBJECTIVES : Offer::SMALL_OBJECTIVES %>
+    <%= f.input :objective, as: :radio_buttons, collection: objective_options.map { |o| [o, o.humanize] }, value_method: :first, label_method: :last, :label_html => { :class => "section_title" }, label: "Objective" %>
+  </section>
+  <section class="category">
+    <h4>What category does your offer fall into?</h4>
+    <%= f.input :primary_category, as: :select, collection: I18n.options_for_select_from_scope('options.business_categories') %>
+    <div class="clear"></div>
+    <div class="category_two_wrapper">
+      <% secondary_business_category_options = @offer.primary_category.present? ? 
+   I18n.options_for_select_from_scope("options.secondary_business_categories.#{@offer.primary_category}") : [] %>
+      <%= f.input :secondary_category, collection: secondary_business_category_options %>
+    </div>
+  </section>
+  <section class="select_date">
+    <h4>How long will your offer be available for?</h4>
+    <div class="fieldset_container">
+    <%= f.input :earliest_start_date, as: :date_picker %>
+    <%= f.input :duration do %>
+      <%= f.number_field :duration, pattern: '[1-9]|[1-8][0-9]|90' %>
+    <% end %>
+    <%= f.input :latest_marketable_date, as: :date_picker %> 
+    </div>
+  </section>
+  <section class="offer_title">
+    <h4>Add an offer title</h4>
+    <div class="fieldset_container">
+      <%= f.input :title %>
+    </div>
+  </section>
+  <section class="offer_pricing">
+    <h4>Pricing details</h4>
+    <div class="fieldset_container">
+      <!-- TODO: Create a custom input that uses #to_s of the attr. -->
+      <%= f.input :original_price, input_html: { placeholder: "£", value: @offer.original_price} %>
+      <%= f.input :bespoke_price, input_html: { placeholder: "£", value: @offer.bespoke_price } %>
+    </div>
+  </section>
+  <section class="offer_mechanic">
+    <h4>Describe your offer</h4>
+    <div class="fieldset_container">
+      <%= f.input :description, as: :text %>
+      <%= f.input :maximum_vouchers do %>
+        <%= f.number_field :maximum_vouchers, pattern: '[1-9]|[1-8][0-9]|90' %>
+      <% end %>
+    </div>
+  </section>
+  <section class="service_phone_redeem">
+    <h4>Using the offer</h4>
+    <div class="fieldset_container">
+      <%= f.input :earliest_redemption, as: :date_picker %> 
+      <%= f.input :voucher_expiry, as: :date_picker %> 
+    </div>
+  </section>
+  <section class="restrictions">
+    <h4>Set your restrictions</h4>
+    <div class="fieldset_container">
+      <%= f.input :can_redeem_online %>
+      <%= f.input :redemption_website_url %>
+      <%= f.input :can_redeem_by_phone %>
+      <%= f.input :redemption_phone_number %>
+      <fieldset>
+        <%= f.radio_button :can_redeem_at_outlets, true, id: "can_redeem_at_outlets", checked: @offer.can_redeem_at_outlets? %><label>All outlets</label>
+      </fieldset>
+      <fieldset>
+        <%= f.radio_button :can_redeem_at_outlets, true, checked: @offer.can_redeem_at_selected_outlets?, id: "can_redeem_at_selected_outlets" %><label>Selected outlets</label>
+      </fieldset>
+      <div id="stores_selector_container">
+      </div>
+     <fieldset>
+        <%= f.radio_button :can_redeem_at_outlets, false, checked: !@offer.can_redeem_at_outlets?, id: "cannot_redeem_at_outlets" %><label>No outlets</label>
+      </fieldset>
+      <%= f.input :use_merchant_supplied_voucher_code, label: "Do you want to use your own Voucher Code?" %>
+      <%= f.input :use_merchant_supplied_image, label: "Do you want to use your own Image?" %>
+      <%= f.input :additional_restrictions, as: :text %>
+    </div>
+  </section>
+  <%= render partial: 'shared/merchants/offers/target_section', locals: { f: f, show_attestation_fields: true } %>
+  <section id="offer_commission_section" class="offer_commission">
+    <h4>Offer Commission Rate</h4>
+     <span><%= "Current Rate: #{@merchant.pre_paid_offer_commission_rate}%" %></span>
+    <%= f.input :standard_pre_paid_offer_commission_rate, label: "Standard Offer Commission Rate" %>
+    <div id="negotiated_pre_paid_offer_commission_rate_fields">
+      <%= f.input :negotiated_pre_paid_offer_commission_rate, label: "Negotiated Offer Commission Rate" %>
+    </div>
+  </section>
+
+  <%= link_to "Cancel", send("#{namespace}_merchant_offers_path", @merchant.id), class: "btn-danger" %>
+  <%= f.submit "Save Progress", class: "save_progress" if @offer.new_record? %>
+  <%= f.submit "Submit", class: "submit_offer" %>
+
+<% end %>
+
+<%= render partial: 'shared/category_selection', locals: { primary_category_selector: '#offer_primary_category', secondary_category_selector: '#offer_secondary_category' } %>

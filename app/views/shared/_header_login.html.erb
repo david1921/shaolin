@@ -1,0 +1,20 @@
+<div class="login_content">
+<!-- ^ This div isn't necessary for structure but a test seems to require it. -->
+<%= simple_form_for :session, :url => session_path do |form| %>
+  <fieldset class="register_link">
+    <%= link_to 'register', new_registration_path %>
+  </fieldset>
+  <fieldset class="login_form">
+    <fieldset>
+      <input id="alt_session_email" name="session[email]" type="email" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$" placeholder="Email Address"/>
+    </fieldset>
+    <fieldset>
+      <input id="alt_session_password" name="session[password]" placeholder="Password" type="password" />
+      <%= link_to "Forgot your password?", new_password_path, :class => 'forgot_password' %>
+    </fieldset>
+    <fieldset>
+      <%= form.button :submit, :value => "Log in", :class => 'login_button' %>
+    </fieldset>
+  </fieldset>
+<% end %>
+</div>

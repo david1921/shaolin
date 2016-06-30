@@ -1,0 +1,8 @@
+<h1>Library Images</h1>
+
+<p><%= pluralize(@library_images.size, "image") %> installed. <%= link_to("Add an image", new_admin_library_image_url) %></p>
+
+<ul id="library_images" class="library_images" data-update-url="<%= sort_admin_library_images_url %>">
+  <%= render @library_images %>
+  <div style="clear:both; height: 0"></div>
+</ul>

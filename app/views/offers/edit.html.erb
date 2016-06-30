@@ -1,0 +1,50 @@
+<!-- OFFER ERRORS: <%= debug(@offer.errors.full_messages) %> -->
+<%= render partial: 'progress' %>
+
+<!-- Offer Details Header -->
+<div class="new_offer_head_wrap">
+  <h1><%= offer_title(@view_step) %></h1>
+  <%= offer_progress_span(@offer, save_button: (@view_step < 4)) %>
+</div><!-- END .new_offer_head_wrap -->
+
+<!-- ENDOffer Details Header -->
+  <p>See <%= link_to "example offer", asset_path("sample-offer.jpg"), class: "sample_offers", rel: "prettyPhotoOffer" %>.</p>
+<div class="column_left">
+<!-- Offer Details Content -->
+  <section class="offer_details_form">
+    <%= simple_form_for @offer do |f| %>
+      <%= render partial: "step_#{@view_step}", locals: { f: f } %>
+      <%= hidden_field_tag :view_step, @view_step %> 
+      <%= f.submit 'Next' %>
+    <% end %>
+  </section>
+</div>
+
+<% content_for(:javascript) do %>
+  <%= javascript_tag do %>
+    $().ready(function() {
+
+      function resetSaveProgress() {
+        $('button.save_progress').html("Save your progress").removeClass('saved failed');
+      }
+
+      $('form.edit_offer').change(resetSaveProgress).keypress(resetSaveProgress);
+
+      $('button.save_progress').click(function(button) {
+        $.ajax({
+          url: "<%= save_progress_offer_path(@offer, view_step: @view_step) %>",
+          data: $("form.edit_offer").serialize(),
+          type: "PUT",
+          success: function() {
+            $('button.save_progress').html("Progress saved");
+            $('button.save_progress').addClass("saved");
+          }, 
+          error: function() {
+            $('button.save_progress').html("Save failed");
+            $('button.save_progress').addClass("failed");
+          }
+        })
+      });
+    });
+  <% end %>
+<% end %>

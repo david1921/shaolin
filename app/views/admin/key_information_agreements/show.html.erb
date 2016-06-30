@@ -1,0 +1,7 @@
+<h1><%= @key_information_agreement.owner.class.name.humanize %> Key Information Form</h1>
+
+<%= raw(@key_information_agreement.html) %>
+
+<div class="recorded_signature_box">
+  <center><%= image_tag(polymorphic_path([:admin, @key_information_agreement], action: :signature), class: "recorded_signature") %></center>
+</div>

@@ -1,0 +1,26 @@
+<div class="stores_table">
+    <ul class="header">
+        <li class="name"><h4>Name</h4></li>
+        <li class="phone_number"><h4>Phone</h4></li>
+        <li class="email_address"><h4>Email</h4></li>
+        <li class="actions"><h4>Actions</h4></li>
+    </ul> 
+  <ul>
+    <% stores.each do |store| %>
+      <li class="name">
+        <%= link_to store.name, edit_admin_merchant_store_path(@merchant, store) %>
+      </li>
+      <li class="phone_number">
+        <%= store.phone_number %>
+      </li>
+      <li class="email_address">
+        <%= store.email_address %>
+      </li>
+      <li class="actions">
+        <%= link_to 'Delete', admin_merchant_store_path(@merchant, store), method: :delete, data: { confirm: 'Are you sure?' }, class: 'action_btn delete_btn' %>
+      </li>
+    <% end %>
+    <div class="clear"></div>
+  </ul>
+  <div class="clear"></div>
+</div>

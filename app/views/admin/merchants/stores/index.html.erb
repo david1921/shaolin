@@ -1,0 +1,8 @@
+<h2>Stores for <%= @merchant.display_name %></h2>
+<div class="admin_table_container">
+  <%= render partial: 'list', object: @stores, as: :stores %>
+</div>
+<p>
+  <%= link_to 'New Store', new_admin_merchant_store_path(@merchant), class: "btn3" %>
+  <%= link_to 'Search Merchants', admin_merchants_path, class: 'btn3'%>
+</p>

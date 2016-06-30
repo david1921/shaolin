@@ -1,0 +1,51 @@
+<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd" [
+ <!ENTITY mysession1 SYSTEM "/home/nniclausse/.tsung/tsung_recorder20051217-13:11.xml">
+]>
+
+<tsung loglevel="info">
+  <clients>
+     <client host="localhost" use_controller_vm="true"/>
+  </clients>
+
+  <servers>
+     <server host="localhost" port="80" type="tcp"/>
+  </servers>
+
+  <load loop="1">
+    <arrivalphase phase="1" duration="1" unit="second">
+     <users interarrival="0.01" unit="second" maxnumber="1"/>
+    </arrivalphase>
+  </load>
+
+  <sessions>
+    <session name="register" probability="100" type="ts_http">
+      <transaction name="landing_page">
+        <request>
+          <http url="https://0.0.0.0:8080/" version="1.1" method="GET">
+          </http>
+        </request>
+      </transaction>
+
+      <transaction name="registrations_new">
+        <request>
+          <http url="/registrations/new" version="1.1" method="GET">
+          </http>
+        </request>
+      </transaction>
+
+      <setdynvars sourcetype="eval"
+          code="fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),
+                        edoc_lib:escape_uri(Val)
+                end.">
+          <var name="authenticity_token" />
+      </setdynvars>
+
+      <transaction name="registrations_create">
+        <request subst="true">
+          <http url="/registrations" method="POST" version="1.1" contents="authenticity_token=%%_authenticity_token%%;step=gross_annual_turnover;registration[gross_annual_turnover]=1,000,000"/>
+        </request>
+      </transaction>
+    </session>
+  </sessions>
+</tsung>

@@ -1,0 +1,39 @@
+<div class="admin_table_container">
+  <h5>Merchant Owners</h5>
+
+  <section class="merchant_options">
+    <%= link_to('Create new owner', new_admin_merchant_merchant_owner_path(@merchant), :class => "create_owner") if action_name == "edit" %>
+  </section>
+
+  <div id='merchant_owners_table' class='data merchants merchant_owners_table'>
+    <ul class="header">
+      <li class="title"><h4>Title</h4></li>
+      <li class="owners_first_name"><h4>First Name</h4></li>
+      <li class="owners_last_name"><h4>Last Name</h4></li>
+      <li class="postal_code"><h4>Postal Code</h4></li>
+      <li class="address"><h4>Address</h4></li>
+      <% if action_name == "edit" -%> 
+        <li class="owners_actions"><h4>Actions</h4></li>
+    <% end -%> 
+    <div class="clear"></div>
+    </ul>
+
+    <%- @merchant.merchant_owners.each do |mo| %>
+      <ul id="owner_row_<%=mo.id%>" class="owner_row">
+      <li class="title column"><%= mo.title %> </li>
+      <li class="owners_first_name column"><%= mo.first_name %> </li>
+      <li class="owners_last_name column"><%= mo.last_name%> </li>
+      <li class="postal_code column"><%= mo.home_postal_code %> </li>
+      <li class="address column"><%= mo.home_address%> </li>
+      <% if action_name == "edit" -%> 
+        <li id="owner_row_<%= mo.id %>_actions" class="owners_actions column">
+        <%= link_to 'edit', edit_admin_merchant_merchant_owner_path(mo.merchant, mo), :class => "edit_btn action_btn" %>
+        <%= link_to 'delete', admin_merchant_merchant_owner_path(mo.merchant, mo), :class => "delete_btn action_btn", :method => :delete, :confirm=> "Are you sure?  Remove #{mo.first_name} #{mo.last_name} as an owner?" %>
+      </li>
+    <% end -%> 
+    <div class="clear"></div>
+    </ul>
+  <%-end%>
+  </div>
+  <div class="clear"></div>
+</div>

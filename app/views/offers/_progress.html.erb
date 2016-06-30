@@ -1,0 +1,10 @@
+<% step_names = ["Offer set up", "Offer Details", "Targeting", "Review", "Confirmation"] %>
+<div class="new_offer_progress_bar">
+  <% (1..step_names.length).each do |i| %>
+    <div class="progress_section step_<%= i %> <%= "active" if @view_step == i %>">
+      <span class="progress_label"><%= step_names[i - 1] %></span>
+      <span class="progress_circle"><%= i %></span>
+    </div>
+  <% end %>
+  <span class="progress_line"></span>
+</div>

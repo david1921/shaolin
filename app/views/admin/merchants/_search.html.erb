@@ -1,0 +1,5 @@
+<%= form_tag admin_merchants_path, :method => 'get', :id => 'merchant-search' do %>
+  <label for="search_name">Merchant name:</label> <%= text_field_tag "search[name]", nil, :placeholder => "Merchant Name" %>
+  <label for="search_post_code">Postal code:</label><%= text_field_tag "search[post_code]", nil, :placeholder => "Post Code" %>
+  <%= submit_tag "Search" %>
+<% end %>

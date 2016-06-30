@@ -1,0 +1,18 @@
+<div class="box">
+	<% @versions.each do |version| -%>
+	<dl class="versions">
+	  <dt><h4>Changes on <%= version.created_at.to_date.to_s(:simple)  %></h4></dt>
+
+	  <% if version.changes.any? -%>
+	    <% version.changes.each_pair do |attribute, values| -%>
+	       <dd class="<%= cycle('odd', 'even') %>"><p><%= render_entry(Admin::VersionsHelper::Entry.new(version.created_at, extract_username_from_version(version), description_from_attribute_and_values(attribute, values))) %></p></dd>
+	    <% end -%>
+	  <% end -%>
+
+	  <% if version.id == 1 -%>
+	      <dd class="<%= cycle('odd', 'even') %>"><p><%= render_entry(Admin::VersionsHelper::Entry.new(version.created_at, extract_username_from_version(version), "Merchant was added") ) %></p></dd>
+	  <% end -%>
+
+	</dl>
+	<% end -%>
+</div>

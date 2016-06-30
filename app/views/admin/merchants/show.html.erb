@@ -1,0 +1,45 @@
+<div class="column_left">
+	<div class="box">
+		<%= render partial: 'shared/merchant/gross_annual_turnover_info', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+	<div class="box">
+		<%= render partial: 'shared/merchant/contact_info', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+	<div class="box">
+		<%= render partial: 'shared/merchant/company_info', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+	<div class="box">
+		<%= render partial: 'shared/address', locals: {address: @merchant.business_address || Address.new } %>
+		<div class="clear"></div>
+	</div>
+	<div class="box">
+		<%= render partial: 'shared/merchant/categories_info', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+	<div class="box">
+		<%= render partial: 'shared/merchant/business_contact_info', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+	<div class="box">
+		<%= render partial: 'shared/merchant/bank_info', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+	<div class="box">
+		<%= render partial: 'shared/merchant/barclays_account_info', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+  <div class="box">
+    <%= render partial: 'shared/merchant/profile_info', locals: {merchant: @merchant} %>
+  </div>
+	<div class="box">
+		<%= render partial: 'shared/merchant/signature', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+	<div class="box">
+		<%= render partial: 'shared/merchant/checks_info', locals: {merchant: @merchant} %>
+		<div class="clear"></div>
+	</div>
+</div>

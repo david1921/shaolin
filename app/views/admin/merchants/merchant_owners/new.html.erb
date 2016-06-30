@@ -1,0 +1,7 @@
+<h2> Create A New Owner</h2>
+<br>
+<div class="column_left">
+	<%= simple_form_for [:admin, @merchant, @merchant_owner] do |f| -%>
+	  <%= render :partial => "form", :object => f, locals: {text: 'Create owner'} %>
+	<% end -%>
+</div>

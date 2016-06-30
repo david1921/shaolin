@@ -1,0 +1,24 @@
+/* Stylesheet to handle retina images */
+
+@media
+only screen and ( -webkit-min-device-pixel-ratio: 1.5 ),
+only screen and ( min--moz-device-pixel-ratio: 1.5 ),
+only screen and ( -o-min-device-pixel-ratio: 3/2 ),
+only screen and ( min-device-pixel-ratio: 1.5 ),
+only screen and ( min-resolution: 96dpi ),
+only screen and ( min-resolution: 1.5dppx ) {
+	header .branding{
+	 .header_logo{
+	    background: url('/assets/bespoke_logo@2x.png');
+	    float: left;
+	    background-size: 285px 89px;
+	    margin-top:20px;
+	  }
+	}
+	.signoff{
+  	.signoff_logo{
+    	background: url('/assets/bespoke_signoff@2x.png') no-repeat;
+    	background-size: 422px 44px;
+  	}
+	}
+}

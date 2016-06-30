@@ -1,0 +1,320 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en-GB:
+  date:
+    formats:
+      default: "%-d/%-m/%Y"
+  next: "Next"
+  options:
+    business_categories:
+      clothing: "Clothing and accessories"
+      electrical: "Electricals"
+      entertainment: "Entertainment"
+      food_and_drink: "Food and drink"
+      health_and_beauty: "Health and beauty"
+      home_and_garden: "Home and garden"
+      kids: "Kids"
+      motor: "Motor"
+      office_and_business: "Office and business"
+      other: "Other services"
+      travel: "Travel"
+    secondary_business_categories:
+      clothing:
+        jewellery: "Jewellery"
+        kids: "Kids"
+        mens: "Mens"
+        other: "Other accessories"
+        shoes: "Shoes"
+        womens: "Womens"
+      electrical:
+        appliances: "Appliances"
+        computing: "Computing"
+        mobile: "Mobile Phones"
+        other: "Other Electronics"
+      entertainment:
+        cinema: "Cinema"
+        music_events: "Music events"
+        other: "Other entertainment"
+        sport_events: "Sport events"
+        theatre: "Theatre"
+        theme_parks: "Theme parks"
+      food_and_drink:
+        bars_and_pubs: "Bars and pubs"
+        every_day_dining: "Every day dining"
+        fine_dining: "Fine Dining"
+        grocery: "Grocery"
+        wine_and_spirits: "Wine and spirits"
+      health_and_beauty:
+        chemists: "Chemists"
+        fitness_centers: "Fitness Centres"
+        other: "Other health and beauty"
+        salons: "Salons"
+        spas: "Spas"
+      home_and_garden:
+        diy: "DIY"
+        home_furnishings: "Home furnishings"
+        home_services: "Home Services"
+        other: "Other home and garden"
+      kids:
+        activities: "Activities"
+        babies: "Babies"
+        clothing: "Clothing"
+        days_out: "Days Out"
+        other: "Other kids"
+        places_to_eat: "Places to eat"
+        toys_games_and_books: "Toys, games and books"
+      motor:
+        auto_rental: "Auto rental"
+        automotive_servicing_and_sales: "Automotive Servicing and Sales"
+        petrol: "Petrol"
+        vehicle_sales: "Vehicle sales"
+      office_and_business:
+        equipment_and_supplies: "Equipment and supplies"
+        office_stationery: "Office stationery"
+        professional_services: "Professional services"
+      other:
+        books_and_periodicals: "Books and periodicals"
+        general_merchandise: "General Merchandise"
+      travel:
+        bb_guest_houses: "B&B/Guest houses"
+        four_star_plus_hotels: "4*+Hotels"
+        hotels_other: "Hotels (other)"
+        package_holidays: "Package holidays"
+        transport: "Transport"
+  please_select: "Please Select"
+  submit_details: "Submit Details"
+  modified_while_editing: "%{model} was modified by another user while you were editing"
+
+  offers:
+    types:
+      prepaid: "Pre-paid Offers"
+      free: "Free Offers"
+      free_with_enhanced_targeting: "Free Offers (with enhanced targeting)"
+    objectives:
+      names:
+        drive_sales: "Drive traffic"
+        get_new_customers: "Get new customers"
+        encourage_repeat_business: "Encourage repeat business"
+      descriptions:
+        drive_sales: "Encourage new and existing customers to spend more with you"
+        get_new_customers: "Based on our data, people who have never shopped with you or have not shopped with you for some time"
+        encourage_repeat_business: "Encourage your customers to come back again and again"
+
+  offer_targeting_criteria:
+    types:
+      gender: "gender"
+      age: "age"
+      income: "Annual income"
+      distance: "Distance from your location"
+      spend_per_merchant_tx: "Spend per transaction with you"
+      spend_per_tx_in_sector: "Spend per transaction in your sector"
+      weekly_merchant_spend_freq: "How often they spend with you per week"
+      weekly_sector_spend_freq: "How often they spend in your sector per week"
+    values:
+      gender:
+        male: "MALE"
+        female: "FEMALE"
+      age:
+        '18-34': [18, 34]
+        '35-55': [35, 55]
+        '55+': '55+'
+      income:
+        '0-20000':
+          - '£0'
+          - '£2000'
+        '20000-40000':
+          - '£2000'
+          - '£4000'
+        '40000+': '£4000+'
+      distance:
+        'Low': "Low"
+        'Low/Medium': "Low/Medium"
+      spend_per_merchant_tx:
+        '0-5':
+          - '£0'
+          - '£5'
+        '5-20':
+          - '£0'
+          - '£5'
+        '20+': '£20+'
+      spend_per_tx_in_sector:
+        '0-5':
+          - '£0'
+          - '£5'
+        '5-20':
+          - '£0'
+          - '£5'
+        '20+': '£20+'
+      weekly_merchant_spend_freq:
+        '0': "None"
+        '1-2':
+          - "1"
+          - "2 TIMES"
+        '3+': "3+ TIMES"
+      weekly_sector_spend_freq:
+        '0': "None"
+        '1-2':
+          - "1"
+          - "2 TIMES"
+        '3+': "3+ TIMES"
+
+# ------------------------------------------------------------------------
+# ERROR MESSAGES USED IN ACTIVERECORD AND ACTIVEMODEL
+# ------------------------------------------------------------------------
+  errors:
+    messages:
+      bank_account_number_digits_only: "Please use numbers only"
+      bank_account_number_invalid_barclays_length: "The sort code you have entered indicates a Barclays Bank Account, please check the account details entered which must be 8 numeric characters long"
+      bank_account_number_too_long: "The %{attribute} must be at no more than 8 digits long"
+      bank_account_number_too_short: "The %{attribute} must be at least 7 digits long"
+      money_invalid_format: "Please use numbers and a single decimal only"
+      money_less_than_or_equal_to_zero: "Must be greater than 0"
+      non_alpha_name: "Please enter the %{attribute} using the letters \"a\" to \"z\" you can also use spaces and hyphens \"-\""
+      non_alpha_numeric: "Please only use the letters \"a\" to \"z\" and the numbers \"0\" to \"9\""
+      phone_invalid_length: "The %{attribute} must be 10 or 11 digits, including the area code"
+      phone_invalid_prefix: "The %{attribute} must start with '01', '02', '03' or '08'' for land lines and '07' for UK mobile numbers"
+      phone_landline_invalid_length: "The %{attribute} must be 10 or 11 digits, including the area code"
+      phone_landline_invalid_prefix: "The %{attribute} must start with '01', '02', '03' or '08'' for land lines and '07' for UK mobile numbers"
+      phone_mobile_invalid_length: "The mobile number must be 11 digits long"
+      phone_mobile_invalid_prefix: "Please enter a UK mobile telephone number starting with '07'"
+      url_invalid_website: "Please enter a valid website address."
+# ------------------------------------------------------------------------
+# MODEL ATTRIBUTES USED IN FIELD LABELS AND VALIDATION MESSAGES
+# ------------------------------------------------------------------------
+  activerecord:
+    models:
+      offer: "Offer"
+    attributes:
+      offer:
+        duration: "duration"
+        earliest_start_date: "earliest start date"
+        latest_marketable_date: "latest marketable date"
+        objective: "objective"
+        primary_category: "Main category"
+        secondary_category: "secondary category"
+        type: "type"
+      merchant:
+        business_bank_account_number: "bank account number"
+        registered_company_name: "registered company name"
+        contact_first_name: "first name"
+        contact_last_name: "surname"
+        contact_title: "title"
+        primary_business_category: "main business category"
+        secondary_business_category: "secondary business category"
+      info_request:
+        privacy_policy: ""
+      user:
+        encrypted_email: "email"
+        encrypted_username: "username"
+    errors:
+      models:
+        offer:
+          attributes:
+            bespoke_price:
+              less_than_original_price: "Please enter a value that is less than the original price"
+            earliest_start_date:
+              after_or_equal_to: "Please select a day that is at least 2 weeks away from today"
+          blank: "Please enter a %{attribute}"
+          inclusion: "Please select a valid %{attribute}"
+        merchant:
+          attributes:
+            authorised_by_first_name:
+              blank: "Please enter an authorised by first name"
+            authorised_by_last_name:
+              blank: "Please enter an authorised by last name"
+            business_bank_account_number:
+              blank: "Please enter the bank or building society account number"
+            business_bank_account_name:
+              invalid: "Please enter a bank account name using the letters \"a\" to \"z\" and numbers \"0\" to \"9\" and dashes, commas, or apostrophes" 
+              blank: 'Please provide the name on your business account'
+            business_bank_sort_code:
+              invalid: 'Please enter a sort code using the letters "a" to "z" and numbers "0" to "9"'
+            contact_work_email_address:
+              blank: "Please make sure you enter a valid email address."
+              invalid: "Please make sure you enter a valid email address."
+            contact_work_mobile_number:
+              blank: "Please provide at least one contact phone number or mobile number."
+            contact_work_phone_number:
+              blank: "Please provide at least one contact number (landline or mobile)."
+              too_long: "Sorry, the number can only be up to 11 digits long (including the area code)."
+              too_short: "Sorry, the number you've entered is too short."
+            registered_company_name:
+              blank: "Please enter a name of an individual or organisation"
+            contact_first_name:
+              blank: "Please make sure you enter your first name."
+              invalid: "Please enter your first name by using the letters A to Z only. Spaces and hyphens (-) are also allowed."
+              too_short: "Sorry, we need your full first name, please enter more than just a single letter."
+            contact_last_name:
+              blank: "Please make sure you enter your surname."
+              invalid: "Please enter your surname by using the letters A to Z only. Spaces, hyphens (-) and apostrophes (') are also allowed."
+              too_short: "Sorry, we need your full surname, please enter more than just a single letter."
+            contact_position:
+              blank: "Please enter your position within the company"
+            contact_title:
+              blank: "Please select your %{attribute}"
+              inclusion: "Please select a valid %{attribute}"
+            password:
+              blank: "Please enter a security password."
+              too_short: "Your password needs to be at least %{count} characters long."
+              too_long: "Please enter no more than %{count} characters"
+              invalid: "Please enter a password using the letters A to Z and numbers 0 to 9."
+            primary_business_contact:
+              blank: "Please enter your position within the company."
+            trading_name:
+              blank: "Please enter the name of your business trading name."
+              too_short: "Please enter at least %{count} characters"
+              too_long: "Please enter no more than %{count} characters"
+            gross_annual_turnover_cents:
+              not_a_number: "Please enter a number"
+              greater_than: "Must be greater than %{count}"
+          blank: "Please enter a %{attribute}"
+          inclusion: "Please select a valid %{attribute}"
+          too_short: "Please enter more than a single character"
+          too_long: "Please enter at most %{count} characters"
+          non_alpha_name: "Please enter the %{attribute} using only the letters \"a\" to \"z\", spaces, and hyphens \"-\""
+          bad_entity_name: "Please enter the %{attribute} using only letters, numbers, commas, spaces, dashes and apostrophes."
+# ------------------------------------------------------------------------
+# SIMPLE FORM LABELS AND PLACEHOLDERS
+# ------------------------------------------------------------------------
+  simple_form:
+    labels:
+      offer:
+        duration: "Duration"
+        earliest_start_date: "Earliest start date"
+        latest_marketable_date: "Latest marketable date"
+        primary_category: "Primary category"
+        secondary_category: "Secondary category"
+      registration:
+        address_postcode: "Postcode"
+        address_premises_name: "Premises name"
+        address_premises_number: "Premises number"
+        authorised_by_email_address: 'Business Contact Email'
+        authorised_by_first_name: 'Firstname'
+        authorised_by_last_name: 'Surname/Lastname'
+        authorised_by_mobile_number: 'Business Contact Mobile'
+        authorised_by_phone_number: 'Business Contact Phone <span>(at least one required)</span>'
+        authorised_by_position: 'Position/Job Title <span>(optional)</span>'
+        business_bank_account_name: "Company bank account name"
+        business_bank_account_number: "Company bank account number"
+        business_bank_address: "Bank address"
+        business_bank_name: "Bank name"
+        business_bank_sort_code: "Company bank sort code"
+        contact_work_email_address: "Work email address"
+        contact_work_mobile_number: "Work mobile number"
+        contact_work_phone_number: "Work phone number"
+        registered_company_name: "Registered company name"
+        trading_name: "Trading name"
+        business_website_url: "Company website address"
+        campaign_code: "Campaign code reference <span>(optional)</span>"
+        contact_first_name: "First name"
+        contact_last_name: "Surname"
+        contact_position: "Position in company"
+        contact_title: "Title"
+        gross_annual_turnover: "What is your projected Gross Annual Turnover for the financial year?"
+        has_online_store: "Do you have an online store?"
+        primary_business_category: "Main business category"
+        secondary_business_category: "Secondary business category"
+      user:
+        password: "Password"
+        password_confirmation: "Confirm password"

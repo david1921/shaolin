@@ -1,0 +1,33 @@
+<h2>Validate Merchants</h2>
+
+<div class="admin_table_container">
+  <div class='data merchants merchants_table'>
+    <ul class="header">
+        <li class="name"><h4>Merchant Name</h4></li>
+        <li class="gpa"><h4>GPA</h4></li>
+        <li class="size"><h4>Size</h4></li>
+        <li class="status"><h4>Status</h4></li>
+        <li class="date_updated"><h4>Date Updated</h4></li>
+        <li class="actions"><h4>Actions</h4></li>
+    </ul>
+    <div class="clear"></div>
+    <div class="merchant_count" data-merchant-count="<%= @merchants.length %>">
+      <% merchant_idx = 0 %>
+      <% @merchants.each_with_index do |merchant, merchant_index| %>
+        <ul id="merchant_row_<%= merchant_idx %>" class="merchant_row">
+          <li class="name column"><%= merchant.registered_company_name.present? ? merchant.registered_company_name :  merchant.trading_name %></li>
+          <li class="gpa column"><%= merchant.barclaycard_gpa_merchant? ? 'Yes' : 'No' %></li>
+          <li class="size column"><%= merchant.large? ? 'Large' : 'SME' %></li>
+          <li class="status column"><%= merchant.status.try(:humanize) %> </li>
+          <li class="date_updated column"><%= merchant.updated_at.to_formatted_s(:rfc822) %></li>
+          <li class="actions column"><%= link_to (merchant.status == 'submitted' ? 'Validate' : 'Reprocess'), edit_admin_merchant_validation_path(merchant) %></li>
+          <div class="clear"></div>
+        </ul>
+        <% merchant_idx = merchant_idx + 1 %>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div><!--/data merchants-->
+</div><!--/merchant_table_container-->
+

@@ -1,0 +1,47 @@
+<h1>Users</h1>
+
+<div class="az_menu_container">
+  <%= link_to 'Create a new user', new_system_user_path, class: "new_user_btn" %>
+  <%= render partial: 'search' %>
+  <div class="clear"></div>
+</div><!--/az_menu_container-->
+
+<div class="admin_table_container">
+  <p><%= page_entries_info(@users, model: User)  %></p>
+  <div class='data merchants merchants_table' id='user_table'> 
+    <ul class="header">
+      <li class="id"><h4>Id</h4></li>
+      <li class="username"><h4>Username</h4></li>
+      <li class="first_name"><h4>First name</h4></li>
+      <li class="last_name"><h4>Last name</h4></li>
+      <li class="system"><h4>System?</h4></li>
+      <li class="admin"><h4>Admin?</h4></li>
+      <li class="sales"><h4>Sales?</h4></li>
+      <li class="merchant"><h4>Merchant?</h4></li>
+      <li class="active"><h4>Active?</h4></li>
+      <li class="user_actions"><h4>Actions</h4></li>
+      <div class="clear"></div>
+    </ul>
+    <% @users.each do |user| %>
+      <ul class="user_row">
+        <li class="id column"><%= user.id %></li>
+        <li class="username column"><%= user.username %></li>
+        <li class="first_name column"><%= user.first_name %></li>
+        <li class="last_name column"><%= user.last_name %></li>
+        <li class="system column"><%= user.is_system? %></li>
+        <li class="admin column"><%= user.is_admin? %></li>
+        <li class="sales column"><%= user.is_sales? %></li>
+        <li class="merchant column"><%= user.is_merchant? %></li>
+        <li class="active column"><%= user.active? %></li>
+        <li class="user_actions column">
+            <%= link_to 'edit', edit_system_user_path(user), class: "edit_btn action_btn" %>
+            <% action = user.active? ? 'deactivate' : 'activate' %>
+            <%= link_to action, system_user_path(user), method: :delete, confirm: "Are you sure you want to #{action} the user.", class: "delete_btn action_btn" %>
+        </li>
+        <div class="clear"></div>
+      </ul>
+    <% end %>
+    <%= will_paginate(@users) %>
+    <div class="clear"></div>
+  </div>
+</div>

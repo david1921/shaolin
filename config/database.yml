@@ -1,0 +1,40 @@
+#
+# This file is overwritten by Chef in production.
+#
+mysql: &mysql
+  adapter: mysql2
+  host: localhost
+  reconnect: true
+  pool: 5
+  encoding: utf8
+
+sqlite: &sqlite
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *mysql
+  database: merchant_portal_development
+  username: mp_development
+  password: 2ppR9G0a
+#
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+#
+test:
+  <<: *mysql
+  database: merchant_portal_test
+  username: mp_test
+  password: 2ppR9G0a
+
+staging:
+  <<: *sqlite
+  database: db/staging.sqlite3
+
+production:
+  adapter: sqlite3
+  database: db/production.sqlite3
+  pool: 5
+  timeout: 5000

@@ -1,0 +1,2 @@
+module Sales::MerchantsHelper
+end

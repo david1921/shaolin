@@ -1,0 +1,24 @@
+<div class="box">
+	<h4>Bank Info</h4>
+	<ul class="merchant_information">
+		<li class="label"><p>Bank Name:</p></li>
+		<li class="value"><p><%= merchant.business_bank_name %></p></li>
+		<div class="clear"></div>
+	</ul>
+	<ul class="merchant_information">
+		<li class="label"><p>Sort Code:</p></li>
+		<li class="value"><p><%= merchant.business_bank_sort_code %></p></li>
+		<div class="clear"></div>
+	</ul>
+	<ul class="merchant_information">
+		<li class="label"><p>Account Number:</p></li>
+		<li class="value"><p><%= merchant.business_bank_account_number %></p></li>
+		<div class="clear"></div>
+	</ul>
+	<ul class="merchant_information">
+		<li class="label"><p>Account Name:</p></li>
+		<li class="value"><p><%= merchant.business_bank_account_name %></p></li>
+		<div class="clear"></div>
+	</ul>
+	<%= render partial: 'shared/address', locals: {address: @merchant.business_bank_address || Address.new } %>
+</div>

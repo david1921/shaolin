@@ -1,0 +1,67 @@
+<section class="free_or_pre_paid">
+  <h4>Select a type of offer</h4>
+  <fieldset class="pre_paid_offer">
+    <label><%= f.radio_button :type, "prepaid", checked: true %> A pre-paid offer</label>
+    <p><br>Your customers will be paying ahead for one of your items/services. They will receive an ‘offer code’ as proof of purchase, which lets them claim the paid for item/service at your outlet or on your website. Bespoke Offers will take a percentage of the sale price. It’s a great, cost-effective way to drive sales as you only pay when customers purchase.</p>
+  </fieldset><!-- END .pre_paid_offer -->
+  <fieldset class="free_offer free">
+    <label><%= f.radio_button :type, "free" %> A free offer</label>
+    <p><br>Your customers will be able to download a ‘voucher code’ to use when they are paying for items/services in your outlet or on your website (e.g. 20% off, 2-for-1). You’ll pay an annual subscription fee to Bespoke Offers of £200, plus an additional cost per click. (The first 500 downloads are free.) This is a great way to incentivise customers to try out your products or service by using an offer at your outlet or on your website.</p>
+  </fieldset><!-- END .free_offer -->
+  <fieldset class="free_targeted_offer free">
+     <label><%= f.radio_button :type, "free_with_enhanced_targeting" %> A free offer with enhanced targeting</label>
+    <p>Your customers will be able to download a ‘voucher code’ to use when they are paying for items/services in your outlet or on your website (e.g. 20% off, 2-for-1). Enhanced targeting lets you focus on a select audience who will be most interested in your offer.
+You pay an annual subscription fee to Bespoke Offers, plus an additional cost per download. (The first 500 downloads are free.)
+There’s a one off fee to cover enhanced targeting. </p>
+  </fieldset><!-- END .free_targeted_offer -->
+  <a id="options_info">more info</a>
+
+</section>
+  
+<section class="objective">
+  <h4 class="tooltip">What's your objective?</h4>
+  <a class="help inline right" data-tooltip="Objectives are the goals that you want to achieve for your business."></a>
+  <div class="objective_buttons">
+    <%= button_tag(type: 'button', class: 'selected', 'data-value' => 'drive_sales') do %>
+      Drive traffic
+      <a class="help" data-tooltip="Get more customers to spend money with you with no specific targeting applied"></a>
+    <% end %>
+    <%= button_tag(type: 'button', 'data-value' => 'get_new_customers') do %>
+      Get new customers
+      <a class="help" data-tooltip="Entice new customers to buy your items or try out your services."></a>
+    <% end %> 
+
+    <% if current_user.merchant.large? %>
+      <%= button_tag(type: 'button', 'data-value' => 'encourage_repeat_business') do %>
+        Encourage repeat<br/>business
+        <a class="help right" data-tooltip="Encourage your customers to come back again and again."></a>
+      <% end %> 
+    <% end %>
+
+    <%= f.input :objective, as: 'hidden', input_html: { value: 'drive_sales' } %>
+  </div><!-- END objective_buttons -->
+</section>
+<section class="category">
+  <h4>What category does your offer fall into?</h4>
+  
+  <%= f.input :primary_category, collection: I18n.options_for_select_from_scope('options.business_categories'), prompt: I18n.t('please_select')  %>
+</section>
+<div class="category_two_wrapper">
+  <section class="category_two">
+    <h4>Select a secondary offer category</h4>
+    <% secondary_business_category_options = @offer.primary_category.present? ? 
+ I18n.options_for_select_from_scope("options.secondary_business_categories.#{@offer.primary_category}") : [] %>
+    <%= f.input :secondary_category, collection: secondary_business_category_options %>
+  </section>
+</div><!-- END .category_two_wrapper -->
+<section class="select_date">
+  <fieldset>
+      <%= f.input :earliest_start_date, tooltip: "This is the first date your offer will be available for customers on Bespoke Offers.", as: :date_picker,  error_html: { id: 'date_error'} %>
+      <fieldset>
+        <%= f.input :duration, tooltip: "This is the time frame in which your offer will be available for customers on Bespoke Offers" do %>
+          <%= f.number_field :duration, pattern: '[1-9]|[1-8][0-9]|90' -%>
+        <% end %>
+      </fieldset>
+      <%= f.input :latest_marketable_date, as: 'string', input_html: { class: 'date_input' }, error_html: { id: 'date_error'} %>
+  </fieldset>
+</section>

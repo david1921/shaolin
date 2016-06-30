@@ -1,0 +1,13 @@
+<%= simple_form_for [:admin, @merchant, @store] do |f| %>
+  <div class="box">
+    <%= f.error_notification %>
+      <%= f.input :name %>
+    <%= f.input :email_address, label: 'Email' %>
+    <%= f.input :phone_number, label: 'Phone Number' %>
+    <%= f.input :opening_hours, label: 'Opening Hours'  %>
+    <%= render partial: 'shared/address_form', locals: { f: f, field: 'Address' } %>
+    <%= f.error :base %>
+  </div>
+  <%= f.button :submit %>
+  <%= link_to 'Cancel', admin_merchant_stores_url(@merchant), class: 'btn3' %>
+<% end %>

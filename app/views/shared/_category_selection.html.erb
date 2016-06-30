@@ -1,0 +1,19 @@
+<%= content_for :javascript do %>
+<%= javascript_tag do %>
+  $(function() {
+    secondaryCategories = <%= I18n.t('options.secondary_business_categories').to_json.html_safe %>;
+    $("<%= primary_category_selector %>").change(function() {
+      html = "";
+      values = secondaryCategories[$(this).val()];
+      html += "<option><%= I18n.t('please_select') %></option>";
+      if(values) {
+        for(var key in values) {
+          html += "<option value=" + key + ">" + values[key] + "</option>";
+        }
+        $("<%= secondary_category_selector %>").removeAttr("disabled");
+      } 
+      $("<%= secondary_category_selector %>").html(html);
+    });
+  });
+<% end %>
+<% end %>

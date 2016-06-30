@@ -1,0 +1,6 @@
+<%= content_tag_for(:li, library_image) do %>
+  <%= image_tag(library_image.photo.url(:review), :class=>"library_image_photo", :width => "300", :height => "186") %>
+  <%= link_to("Edit", [:edit, :admin, library_image], :class => "edit") %>
+  <%= link_to("Delete", [:admin, library_image], :method => :delete, :confirm => "Really delete this image?", :class => "kill") %>
+  <span class="drag">Drag</span>
+<% end %>

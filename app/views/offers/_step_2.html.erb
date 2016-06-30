@@ -1,0 +1,106 @@
+<section class="offer_title">
+  <h4>Add an offer title</h4>
+  <a class="help" data-tooltip="Describe your offer in a concise, informative and attractive way for consumers."></a>
+
+  <%= f.input :title, as: :text, input_html: { placeholder: "e.g. Get 20% off your next spa visit. Treat yourself to a luxury massage, facials and more." } %>
+</section><!-- END .offer_title -->
+
+<section class="offer_pricing">
+  <% if @offer.prepaid? %>
+    <h4>Pricing details</h4>
+    <p>Please enter the original retail price of your product or service as well as your Bespoke Offer price. This lets customers know how much they’re saving. The standard price must be the price you actually sell your product or service at. (Please note, you may be asked to verify your pricing as part of our offer review/approval process.)</p>
+    <fieldset>
+        <%= f.input :original_price, tooltip: "Please indicate what would your product or service be worth if the customer was paying for it without a voucher.", input_html: { placeholder: "£", value: @offer.original_price } %>
+      <%= f.input :bespoke_price, tooltip: "Please enter the price Bespoke Offers customers will pay for the item or service, taking into account any discount.", input_html: { placeholder: "£"} %>
+    </fieldset>
+    <hr>
+  <% end -%>
+  <h4>Set a maximum number of vouchers</h4>
+ <fieldset>
+    <p>This is important to ensure that you don’t sell more offers than you can fulfil.</p>
+  <%= f.input :maximum_vouchers, special_info: "(Max number of vouchers to be sold)." %>
+  </fieldset>
+  <fieldset>
+    <%= f.input :use_own_vouchers, label: 'Would you like to use your own vouchers?' %>
+  </fieldset>
+</section><!-- END .offer_pricing -->
+
+<section class="offer_mechanic">
+  <h4>Describe your offer</h4><a class="help" data-tooltip="Here you can describe your offer in greater detail. Think of all the things a customer would want to know about the offer. Try to write in both an exciting and persuasive way."></a>
+  <p>Why is this a great deal? What will your customers get?
+This is where you sell the key features and benefits of your offer and business.</p>
+  <%= f.input :description, as: :text %>
+  <%= f.input :choose_own_offer_image, label: 'Choose own Offer Image' %>
+  <div class="own_image_contact">A bespoke representative will contact you shortly in regards to loading your own image.</div>
+  <a id="choose_library_image" class="image_ui_btn" rel="image-gallery" href="<%= image_gallery_path %>?ajax=true">Choose offer image</a>
+  <%= f.input :library_image_id, as: :hidden %>
+  <div id="library_image">
+    <%= image_tag(@offer.library_image.photo.url(:gallery)) if @offer.library_image %>
+  </div>
+</section><!-- END .offer_mechanic -->
+
+<% if @offer.merchant.needs_customer_service_contact_details? %>
+<section>
+  <p>These will be published on your offer so that customers can contact you about your promotion.</p>
+  <%= f.fields_for :merchant do |merchant_form| %>
+    <%= merchant_form.input :customer_service_phone_number %>
+    <%= merchant_form.input :customer_service_email_address %>
+  <% end %>
+</section>
+<% end %>
+
+
+<section class="service_phone_redeem">
+  <h4>Using the offer</h4>
+  <a class="help" data-tooltip="This is some helpful information for the user who has questions"></a>
+  <p>How long can customers use their voucher?</p>
+
+  <%= f.input :voucher_expiry, as: :string, input_html: { class: 'date_input' } %>
+  <fieldset class="redeem_how submenu">
+    <label>Where can customers use their offer?</label>
+    <ul>
+      <li><input class="online_offer_checkbox" type="checkbox" name="redeem_how" value="online" />Online
+        <ul class="online_address">
+          <li><%= f.input :website_url %></li>
+        </ul>
+      </li>
+      <li><input type="checkbox" name="redeem_how" value="at_location" />In your outlet
+        <ul>
+          <li><input type="checkbox" name="redeem_how" value="all_location" checked="checked"/>All locations</li>
+          <li><input type="checkbox" name="redeem_how" value="store_1" checked="checked"/>Store1, Oxford Street, London</li>
+          <li><input type="checkbox" name="redeem_how" value="store_2" checked="checked"/>Store 2, New Oxford Street, London</li>
+          <li><input type="checkbox" name="redeem_how" value="store_3" checked="checked"/>Store 3, Regent Street, London</li>
+          <li><%= link_to "Add new store in settings", "" %></li>
+        </ul>
+      </li>
+      <li><input class="over_phone_checkbox" type="checkbox" name="redeem_how" value="phone" />Over the phone
+        <ul class="phone">
+          <li><%= f.input :phone %></li>
+        </ul>
+      </li>
+    </ul>
+  </fieldset>
+</section><!-- END .servive_phone_redeem -->
+
+<section class="restrictions">
+  <h4>Set your restrictions</h4>
+  <p>Make sure you record all the appropriate restrictions that will apply to your offer.</p>
+
+  <fieldset>
+    <h5>Generic Restrictions</h5>
+    <ul>
+      <li><%= f.input :full_redemption %></li>
+      <li><%= f.input :new_customers %></li>
+      <li><%= f.input :no_shows_cancellations_forfeit_voucher %></li>
+      <li><%= f.input :one_per_transaction_per_visit %></li>
+      <li><%= f.input :non_transferrable %></li>
+    </ul>
+  </fieldset>
+
+  <fieldset class="bullet_list">
+    <label>Additional offer restrictions to apply<span>(please specify in bullet points)</span></label>
+    <textarea class="bullet_input"></textarea>
+    <div class="list_box"></div>
+    <textarea class="bullet_textbox" style="display:none"></textarea>
+  </fieldset>
+</section><!-- END .restrictions -->

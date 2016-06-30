@@ -1,0 +1,8 @@
+<nav class="tabs dashboard">
+	<ul class="tab_nav dashboard">
+    	<li class="home <%= "active" if "#{params[:controller]}##{params[:action]}" == "dashboard#index" %>"><%= link_to 'Home', dashboard_index_path %></li>
+    	<li class="new_offer <%= "active" if "#{params[:controller]}" == "offers" %>"><%= link_to 'Create a new offer', new_offer_path %></li>
+     	<li class="faqs <%= "active" if "#{params[:controller]}##{params[:action]}" == "static_pages#support" %>"><%= link_to 'FAQS', support_path %></li>    
+	    <li class="contact <%= "active" if "#{params[:controller]}##{params[:action]}" == "info_requests#new" %>"><%= link_to 'Contact us', new_info_request_path %></li>    
+	</ul>
+</nav>

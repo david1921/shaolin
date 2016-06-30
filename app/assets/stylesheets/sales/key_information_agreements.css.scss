@@ -1,0 +1,107 @@
+#key_information_form {
+  width: 100%;
+
+  .section {
+    margin: 1em 0;
+    width: 100%;
+  }
+  td {
+     border: 1px solid #c0c0c0;
+     padding: 0.5em;
+     
+     .definition {
+       font-weight: bold;
+       line-height: 0;
+       padding-top: 0;
+       text-align: center;
+     }
+     .address-line {
+       line-height: 0.5;
+     }
+  }
+  td:first-child {
+    background-color: #f0f0f0;
+    width: 25%;
+  }
+  td.head {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  td.body {
+    background-color: inherit;
+  }
+
+  .authorised-signatory, .value-table {
+    td {
+      background-color: transparent;
+      border: none;
+      padding: 0.25em;
+    }
+  }
+  .authorised-signatory {
+    width: 100%;
+
+    td {
+      font-weight: bold;
+    }
+    td:first-child {
+      width: 25%;
+    }
+  }
+  p, li {
+    color: black;
+  }
+  .attestation {
+    font-style: italic;
+  }
+  .attestation_check_box {
+    display: block;
+    float: left;
+    margin: 0.25em 1em 0 0;
+  }
+  .where_to_use_vouchers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    span {
+      font-weight: bold;
+    }
+    ul {
+      list-style: disc;
+      margin: 0 0 20px 0;
+      &:last-child {
+        margin: 0 0 0 0;
+      }
+      li {
+        margin: 3px 0;
+      }
+    }
+  }
+}
+
+#signature_box, .recorded_signature_box {
+  border: 1px solid #d0d0d0;
+  clear: both;
+  height: 150px;
+  margin: 15px auto;
+  width:600px;
+}
+
+.recorded_signature_box {
+  line-height: 150px;
+}
+
+.recorded_signature {
+  vertical-align: middle;
+}
+
+#signature_reset {
+  display: block;
+  text-align: center;
+}
+
+.offer_key_information_agreements{
+  .button{
+    float:right;
+  }
+}

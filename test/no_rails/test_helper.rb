@@ -1,0 +1,5 @@
+require 'shoulda-context'
+require 'active_support/all'
+require 'mocha'
+require 'nokogiri'
+require 'ruby-debug'

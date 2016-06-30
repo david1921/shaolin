@@ -1,0 +1,49 @@
+<div class="single_form_page">
+<h1>Contact Us</h1>
+
+<%= form_for @info_request do |f| %>
+  
+  <%= render_error_messages_for(@info_request) -%>
+
+	<%= field_set_tag do %>
+		<%= f.label 	:title %>
+		<%= f.select 	:title, [""] + @info_request.valid_contact_titles %>
+	<% end -%>
+
+	<%= field_set_tag do %>
+		<%= f.label 			:first_name %>
+		<%= f.text_field  :first_name %>
+	<% end -%>
+
+	<%= field_set_tag do %>
+		<%= f.label 			:last_name %>
+		<%= f.text_field  :last_name %>
+	<% end -%>	
+
+	<%= field_set_tag do %>
+		<%= f.label 			:business_name %>
+		<%= f.text_field  :business_name %>
+	<% end -%>
+
+	<%= field_set_tag do %>
+		<%= f.label 			:email, "E-mail address" %>
+		<%= f.text_field  :email %>
+		<span class="form_field_info">We’ll only use this info to contact you about this service</span>
+	<% end -%>	
+	
+	<%= field_set_tag do %>
+		<%= f.label       :telephone, "Phone number" %>
+		<%= f.text_field  :telephone %>
+	<% end -%>
+
+	<%= field_set_tag do %>
+		<%= f.label      :additional_details, "Please describe your query" %>
+		<%= f.text_area  :additional_details %>
+	<% end -%>
+	
+	<%= field_set_tag do %>
+		<%= f.submit "Submit"%>
+	<% end -%>
+
+<% end -%>
+</div>
